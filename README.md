@@ -7,3 +7,5 @@ You can reproduce these results on your computer .
 You need dependencies below.
 * Matlab 2021a
 * Python 3.12.6 
+* STM32CubeMX 6.2.1
+* SW4STM32 2.9
