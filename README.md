@@ -5,5 +5,5 @@ You can reproduce these results on your computer .
 ## Install
 ### Dependencies
 You need dependencies below.
-Matlab 2021a
-Python 3.12.6 
+* Matlab 2021a
+* Python 3.12.6 
