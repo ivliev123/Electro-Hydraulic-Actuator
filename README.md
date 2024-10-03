@@ -9,3 +9,13 @@ You need dependencies below.
 * Python 3.12.6 
 * STM32CubeMX 6.2.1
 * SW4STM32 2.9
+
+Using Python 3, create a virtual environment and then install dependancies with:
+```
+python -m venv myenv
+.\myenv\Scripts\activate
+```
+
+```
+pip install -r requirements.txt
+```
