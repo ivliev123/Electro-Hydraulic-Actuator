@@ -12,9 +12,9 @@
 #import "main.h"
 
 //#define System_Mode		'A' //'PWM_mode'
-//#define System_Mode		'B' //'SPEED_mode'
+#define System_Mode		'B' //'SPEED_mode'
 //#define System_Mode			'C' //'POSITION_mode'
-#define System_Mode			'D' //'trajectory_mode'
+//#define System_Mode			'D' //'trajectory_mode'
 
 
 float DC_MOTOR_PI_Calc(void);
