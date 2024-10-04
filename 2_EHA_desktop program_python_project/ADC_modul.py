@@ -574,9 +574,10 @@ class ADC_(QMainWindow):
     def run_ADC_read_data_from_modbus(self):
         if self.COM_use.connect_status:
 
-            # reg = [1]
-            # write_result = self.COM_use.client.write_registers(REG_MAP_modul.REG_MAP_object.REG_START_STOP, reg)
-            # print(write_result)
+            # tyt comm uncomm
+            reg = [1]
+            write_result = self.COM_use.client.write_registers(REG_MAP_modul.REG_MAP_object.REG_START_STOP, reg)
+            print(write_result)
 
             if (self.ADC1_mode_value == 0):
 
