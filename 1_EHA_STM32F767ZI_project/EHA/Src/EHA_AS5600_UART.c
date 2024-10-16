@@ -76,7 +76,7 @@ void EHA_AS5400_UART_get_response(void){
 
 //    uint16_t summ = 0;
     uint8_t summ = 0;
-    uint8_t checksum = 0;
+//    uint8_t checksum = 0;
 
     if(uart_available()){
     	_byte = uart_read();

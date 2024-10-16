@@ -9,12 +9,15 @@
 #define INC_EHA_CONTROL_SYSTEM_H_
 
 
-#import "main.h"
+#include "main.h"
 
 //#define System_Mode		'A' //'PWM_mode'
 //#define System_Mode		'B' //'SPEED_mode'
-//#define System_Mode			'C' //'POSITION_mode'
-#define System_Mode			'D' //'trajectory_mode'
+#define System_Mode			'C' //'POSITION_mode'
+//#define System_Mode			'D' //'trajectory_mode'
+
+//#define Accum_status		'A'
+#define Accum_status		'D'
 
 
 float DC_MOTOR_PI_Calc(void);

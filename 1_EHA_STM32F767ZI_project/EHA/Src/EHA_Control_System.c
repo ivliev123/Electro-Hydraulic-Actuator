@@ -6,7 +6,7 @@
  */
 
 #include <EHA_Control_System.h>
-
+#include "stdlib.h"
 
 
 //#define PID_PWM_MIN		32
@@ -39,10 +39,10 @@ int8_t CYLINDER_Dir = 0;
 	#define CYLINDER_PI_Kp        1
 	#define CYLINDER_PI_Ki        0
 #elif   (System_Mode  == 'D')
-	#define DC_MOTOR_PI_Kp        1
-	#define DC_MOTOR_PI_Ki        0.1
+	#define DC_MOTOR_PI_Kp        1	//1
+	#define DC_MOTOR_PI_Ki        0.05	//0.1
 
-	#define CYLINDER_PI_Kp        10
+	#define CYLINDER_PI_Kp        1		//10
 	#define CYLINDER_PI_Ki        0
 
 #else
@@ -62,9 +62,13 @@ float DC_MOTOR_P_OUT = 0;
 float DC_MOTOR_I_OUT = 0;
 float DC_MOTOR_PI_OUT = 0;
 
-#define DC_MOTOR_Vel_MAX  3000
-#define DC_MOTOR_PI_Calc_MAX	32767
-#define DC_MOTOR_PI_Calc_MIN	-32767
+uint8_t DC_MOTOR_I = 1;
+
+#define DC_MOTOR_Vel_MAX  700 //3000
+//#define DC_MOTOR_PI_Calc_MAX	32767
+//#define DC_MOTOR_PI_Calc_MIN	-32767
+#define DC_MOTOR_PI_Calc_MAX	5000
+#define DC_MOTOR_PI_Calc_MIN	-5000
 
 float DC_MOTOR_PI_Calc(void){
 	#if   (System_Mode  == 'A')
@@ -108,18 +112,34 @@ float DC_MOTOR_PI_Calc(void){
 	#endif
 
 //	DC_MOTOR_Vel_Fb = AS5600_RPM_Get();
-//	DC_MOTOR_Vel_Fb_F = DC_MOTOR_Vel_Fb_Filter();
-	DC_MOTOR_Vel_Fb_F = DC_MOTOR_Vel_Fb;
+	DC_MOTOR_Vel_Fb_F = DC_MOTOR_Vel_Fb_Filter();
+//	DC_MOTOR_Vel_Fb_F = DC_MOTOR_Vel_Fb;
 
     DC_MOTOR_PI_Err = DC_MOTOR_Vel - DC_MOTOR_Vel_Fb_F;
 
     DC_MOTOR_P_OUT 	=					DC_MOTOR_PI_Kp * DC_MOTOR_PI_Err;
-    DC_MOTOR_I_OUT 	= DC_MOTOR_I_OUT  + 	DC_MOTOR_PI_Ki * DC_MOTOR_PI_Err;
+    if(DC_MOTOR_I){
+        DC_MOTOR_I_OUT 	= DC_MOTOR_I_OUT  + 	DC_MOTOR_PI_Ki * DC_MOTOR_PI_Err;
+    }
     DC_MOTOR_PI_OUT = DC_MOTOR_P_OUT + DC_MOTOR_I_OUT;
 
 	if(DC_MOTOR_PI_OUT >= DC_MOTOR_PI_Calc_MAX){
 		DC_MOTOR_PI_OUT = DC_MOTOR_PI_Calc_MAX;
+		DC_MOTOR_I = 0;
 	}
+	else if(DC_MOTOR_PI_OUT <= DC_MOTOR_PI_Calc_MIN){
+		DC_MOTOR_PI_OUT = DC_MOTOR_PI_Calc_MIN;
+		DC_MOTOR_I = 0;
+	}
+	else{
+		DC_MOTOR_I = 1;
+	}
+
+//	else{
+//	    DC_MOTOR_P_OUT 	=					DC_MOTOR_PI_Kp * DC_MOTOR_PI_Err;
+//	    DC_MOTOR_I_OUT 	= DC_MOTOR_I_OUT  + 	DC_MOTOR_PI_Ki * DC_MOTOR_PI_Err;
+//	    DC_MOTOR_PI_OUT = DC_MOTOR_P_OUT + DC_MOTOR_I_OUT;
+//	}
 
 	
     DC_MOTOR_PI_data_to_monitor();
@@ -129,7 +149,8 @@ float DC_MOTOR_PI_Calc(void){
 
 void DC_MOTOR_PI_data_to_monitor(void){
 	MyData.data_5 = (int16_t)DC_MOTOR_Vel;
-	MyData.data_6 = (int16_t)DC_MOTOR_Vel_Fb;
+//	MyData.data_6 = (int16_t)DC_MOTOR_Vel_Fb;
+	MyData.data_6 = (int16_t)DC_MOTOR_Vel_Fb_F;
 	MyData.data_7 = (int16_t)DC_MOTOR_PI_Err;
 	MyData.data_8 = (int16_t)DC_MOTOR_PI_OUT;
 
@@ -139,6 +160,10 @@ void DC_MOTOR_PI_data_to_monitor(void){
 int16_t DC_MOTOR_Vel_Fb_array_filter[DC_MOTOR_Vel_Fb_filter_count]= {0,};
 int16_t DC_MOTOR_Vel_mid_f = 0;
 
+#define FILTER_THRESHOLD 20  // ����� (� ���������) ��� ���������� ������ �������
+
+// float DC_MOTOR_Vel_Ff_mid = 0;
+float DC_MOTOR_Vel_Ff_mid_f_LAST = 0;
 
 float DC_MOTOR_Vel_Fb_Filter(void){
 	float DC_MOTOR_Vel_Ff_mid = 0;
@@ -146,13 +171,25 @@ float DC_MOTOR_Vel_Fb_Filter(void){
 		DC_MOTOR_Vel_Fb_array_filter[i] = DC_MOTOR_Vel_Fb_array_filter[i + 1];
 		DC_MOTOR_Vel_Ff_mid += DC_MOTOR_Vel_Fb_array_filter[i];
 	}
-	DC_MOTOR_Vel_Fb_array_filter[DC_MOTOR_Vel_Fb_filter_count-1] = DC_MOTOR_Vel_Fb;
-	DC_MOTOR_Vel_Ff_mid += DC_MOTOR_Vel_Fb_array_filter[DC_MOTOR_Vel_Fb_filter_count-1];
+//	if(abs(DC_MOTOR_Vel_Fb) > DC_MOTOR_Vel_mid_f + 500){
+	if(abs(DC_MOTOR_Vel_Fb - DC_MOTOR_Vel_mid_f) > 500){
+		DC_MOTOR_Vel_Fb_array_filter[DC_MOTOR_Vel_Fb_filter_count-1] = DC_MOTOR_Vel_Ff_mid_f_LAST;
+		DC_MOTOR_Vel_Ff_mid += DC_MOTOR_Vel_Ff_mid;
+	}else{
+		DC_MOTOR_Vel_Fb_array_filter[DC_MOTOR_Vel_Fb_filter_count-1] = DC_MOTOR_Vel_Fb;
+		DC_MOTOR_Vel_Ff_mid += DC_MOTOR_Vel_Fb_array_filter[DC_MOTOR_Vel_Fb_filter_count-1];
+
+	}
+
+
 
 	DC_MOTOR_Vel_mid_f = DC_MOTOR_Vel_Ff_mid / DC_MOTOR_Vel_Fb_filter_count;
+	DC_MOTOR_Vel_Ff_mid_f_LAST = DC_MOTOR_Vel_mid_f;
 
 	return DC_MOTOR_Vel_mid_f;
 }
+
+
 
 
 void DC_MOTOR_PI_init(void){
@@ -190,14 +227,17 @@ float CYLINDER_Pos_PI_Err = 0;
 float CYLINDER_P_OUT = 0;
 float CYLINDER_I_OUT = 0;
 float CYLINDER_PI_OUT = 0;
+float CYLINDER_PI_OUT_MAX = 2000;
+float CYLINDER_PI_OUT_MIN = -2000;
 
-
+uint8_t  CYLINDER_I_FLAG = 1;
 
 float CYLINDER_PI_Calc(void){
 	#if   (System_Mode  == 'C')
 		CYLINDER_Pos = reg_to_int16(usRegHoldingBuf[REG_MOTOR_PWM]);
 	#elif   (System_Mode  == 'D')
-		CYLINDER_Pos = -0.5 * (float)Get_Trajectory();
+		 CYLINDER_Pos = -0.5 * (float)Get_Trajectory();
+//		CYLINDER_Pos = -1.0 * (float)Get_Trajectory();
 	#else
 		CYLINDER_Pos = 0;
 	#endif
@@ -208,8 +248,27 @@ float CYLINDER_PI_Calc(void){
     CYLINDER_Pos_PI_Err = CYLINDER_Pos - CYLINDER_Pos_Fb_F;
 
     CYLINDER_P_OUT 	=						CYLINDER_PI_Kp * CYLINDER_Pos_PI_Err;
-    CYLINDER_I_OUT 	= CYLINDER_I_OUT  + 	CYLINDER_PI_Ki * CYLINDER_Pos_PI_Err;
-    CYLINDER_PI_OUT = CYLINDER_P_OUT + CYLINDER_I_OUT;
+    if(CYLINDER_I_FLAG){
+    	CYLINDER_I_OUT 	= CYLINDER_I_OUT  + 	CYLINDER_PI_Ki * CYLINDER_Pos_PI_Err;
+    }
+	CYLINDER_PI_OUT = CYLINDER_P_OUT + CYLINDER_I_OUT;
+
+    if(CYLINDER_PI_OUT >= CYLINDER_PI_OUT_MAX){
+    	CYLINDER_PI_OUT = CYLINDER_PI_OUT_MAX;
+    	CYLINDER_I_FLAG = 0;
+    }
+    else if(CYLINDER_PI_OUT <= -CYLINDER_PI_OUT_MAX){
+    	CYLINDER_PI_OUT = -CYLINDER_PI_OUT_MAX;
+    	CYLINDER_I_FLAG = 0;
+    }
+    else{
+    	CYLINDER_I_FLAG = 1;
+    }
+//    else{
+//        CYLINDER_P_OUT 	=						CYLINDER_PI_Kp * CYLINDER_Pos_PI_Err;
+//        CYLINDER_I_OUT 	= CYLINDER_I_OUT  + 	CYLINDER_PI_Ki * CYLINDER_Pos_PI_Err;
+//        CYLINDER_PI_OUT = CYLINDER_P_OUT + CYLINDER_I_OUT;
+//    }
 
    CYLINDER_PI_data_to_monitor();
 
@@ -274,18 +333,30 @@ void EHA_Control_System(void){
 				OUT_PID_PWM = PID_PWM;
 				Relay_1_OFF;
 				Relay_4_ON;
+				#if (Accum_status == 'A')
+					Relay_2_ON;
+					Relay_3_OFF;
+				#endif
 				MyData.data_12 = 1000;
 			}
 			else if (PID_PWM < -PID_PWM_MIN){
 				OUT_PID_PWM = -PID_PWM;
 				Relay_1_ON;
 				Relay_4_OFF;
+				#if (Accum_status == 'A')
+					Relay_2_OFF;
+					Relay_3_ON;
+				#endif
 				MyData.data_12 = -1000;
 			}
 			else{
 				OUT_PID_PWM = 0;
 				Relay_1_OFF;
 				Relay_4_OFF;
+				#if (Accum_status == 'A')
+					Relay_2_OFF;
+					Relay_3_OFF;
+				#endif
 				MyData.data_12 = 0;
 			}
 		}
@@ -308,18 +379,30 @@ void EHA_Control_System(void){
 				OUT_PID_PWM = PID_PWM;
 				Relay_1_OFF;
 				Relay_4_ON;
+				#if (Accum_status == 'A')
+					Relay_2_OFF;
+					Relay_3_ON;
+				#endif
 				MyData.data_12 = 1000;
 			}
 			else if (PID_PWM < -PID_PWM_MIN){
 				OUT_PID_PWM = -PID_PWM;
 				Relay_1_ON;
 				Relay_4_OFF;
+				#if (Accum_status == 'A')
+					Relay_2_ON;
+					Relay_3_OFF;
+				#endif
 				MyData.data_12 = -1000;
 			}
 			else{
 				OUT_PID_PWM = 0;
 				Relay_1_OFF;
 				Relay_4_OFF;
+				#if (Accum_status == 'A')
+					Relay_2_OFF;
+					Relay_3_OFF;
+				#endif
 				MyData.data_12 = 0;
 			}
 		}
@@ -380,59 +463,50 @@ int32_t Get_Trajectory(void){
 
         if(pos_count >=time_9){pos_stage = 10;}
 
-//        if(pos_count >=0 && pos_count <1000){pos_stage = 1;}
-//        if(pos_count >=1000 && pos_count <2000){pos_stage = 2;}
-//        if(pos_count >=2000 && pos_count <6000){pos_stage = 3;}
-//        if(pos_count >=6000 && pos_count <7000){pos_stage = 4;}
-//        if(pos_count >=7000 && pos_count <10000){pos_stage = 5;}
-//
-//        if(pos_count >=10000 && pos_count <10500){pos_stage = 6;}
-//        if(pos_count >=10500 && pos_count <12500){pos_stage = 7;}
-//        if(pos_count >=12500 && pos_count <13000){pos_stage = 8;}
-//        if(pos_count >=13000 && pos_count <16000){pos_stage = 9;}
-//
-//        if(pos_count >=16000){pos_stage = 10;}
-
         pos_count++;
 //        mb_RegHoldBuf[24] = pos_count;
 
 //        if (pos_stage == 1){pos = 0;}
-        switch(pos_stage)
-        {
-            case 1:
-                pos = 0;
-                break;
-            case 2:
-                pos = pos - 1;
-                break;
-            case 3:
-                pos = -1 * amplitude;
-                break;
-            case 4:
-                pos = pos + 1;
-                break;
-            case 5:
-                pos = 0;
-                break;
-            case 6:
-                pos = pos - 1;
-                break;
-            case 7:
-                pos = -1 * half_amplitude;
-                break;
-            case 8:
-                pos = pos + 1;
-                break;
-            case 9:
-                pos = 0;
-                break;
-            case 10:
-                pos_count = 0;
-                pos_stage = 1;
-                pos_flag = 0;
-                usRegHoldingBuf[REG_START_STOP] = 0;
-                break;
-        }
+//        if(pos_count % 2 == 0){
+			switch(pos_stage)
+			{
+				case 1:
+					pos = 0;
+					break;
+				case 2:
+					pos = pos - 1;
+					break;
+				case 3:
+					pos = -1 * amplitude;
+//					pos = -1 * amplitude * 0.5;
+					break;
+				case 4:
+					pos = pos + 1;
+					break;
+				case 5:
+					pos = 0;
+					break;
+				case 6:
+					pos = pos - 1;
+					break;
+				case 7:
+//					pos = -1 * half_amplitude * 0.5;
+					pos = -1 * half_amplitude;
+					break;
+				case 8:
+					pos = pos + 1;
+					break;
+				case 9:
+					pos = 0;
+					break;
+				case 10:
+					pos_count = 0;
+					pos_stage = 1;
+					pos_flag = 0;
+					usRegHoldingBuf[REG_START_STOP] = 0;
+					break;
+			}
+//        }
     }
 
 //    pos = -0.5 * pos;

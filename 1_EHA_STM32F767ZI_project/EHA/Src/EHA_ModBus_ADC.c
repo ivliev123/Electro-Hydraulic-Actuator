@@ -76,7 +76,7 @@ void ModBus_ADC_Callback(void){
 	ADC_pos_reg_array = (ADC_num_blok_reg_array % ADC_bloks_len) * ADC_block_size + ADC_i;
 
 	count++;
-	uint16_t x = count%2000;
+//	uint16_t x = count%2000;
 	/*«апись в регистры Modbus значений с каналов ADC*/
 	usRegHoldingBuf[ADC_start_reg_1 + ADC_pos_reg_array] = adc[0];
 	usRegHoldingBuf[ADC_start_reg_2 + ADC_pos_reg_array] = adc[1];
