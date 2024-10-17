@@ -33,7 +33,7 @@ int8_t CYLINDER_Dir = 0;
 	#define CYLINDER_PI_Kp        0
 	#define CYLINDER_PI_Ki        0
 #elif   (System_Mode  == 'C')
-	#define DC_MOTOR_PI_Kp        0.2
+	#define DC_MOTOR_PI_Kp        1 //0.2
 	#define DC_MOTOR_PI_Ki        0.05
 
 	#define CYLINDER_PI_Kp        1
@@ -42,7 +42,7 @@ int8_t CYLINDER_Dir = 0;
 	#define DC_MOTOR_PI_Kp        1	//1
 	#define DC_MOTOR_PI_Ki        0.05	//0.1
 
-	#define CYLINDER_PI_Kp        1		//10
+	#define CYLINDER_PI_Kp        4		//10
 	#define CYLINDER_PI_Ki        0
 
 #else
@@ -64,11 +64,13 @@ float DC_MOTOR_PI_OUT = 0;
 
 uint8_t DC_MOTOR_I = 1;
 
-#define DC_MOTOR_Vel_MAX  700 //3000
+#define DC_MOTOR_Vel_MAX  2000  //1500 //700 //3000
 //#define DC_MOTOR_PI_Calc_MAX	32767
 //#define DC_MOTOR_PI_Calc_MIN	-32767
-#define DC_MOTOR_PI_Calc_MAX	5000
-#define DC_MOTOR_PI_Calc_MIN	-5000
+//#define DC_MOTOR_PI_Calc_MAX	5000
+//#define DC_MOTOR_PI_Calc_MIN	-5000
+#define DC_MOTOR_PI_Calc_MAX	10000
+#define DC_MOTOR_PI_Calc_MIN	-10000
 
 float DC_MOTOR_PI_Calc(void){
 	#if   (System_Mode  == 'A')
@@ -428,7 +430,7 @@ uint8_t pos_stage = 0;
 
 
 //#define amplitude  1000
-#define amplitude  2000
+#define amplitude  4000
 #define half_amplitude  amplitude/2
 
 #define time_0  0
