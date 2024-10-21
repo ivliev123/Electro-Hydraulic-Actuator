@@ -40,7 +40,7 @@ int8_t CYLINDER_Dir = 0;
 	#define CYLINDER_PI_Ki        0
 #elif   (System_Mode  == 'D')
 	#define DC_MOTOR_PI_Kp        1	//1
-	#define DC_MOTOR_PI_Ki        0.1	//0.1
+	#define DC_MOTOR_PI_Ki        0.15	//0.1
 
 	#define CYLINDER_PI_Kp        10		//10
 	#define CYLINDER_PI_Ki        0
@@ -232,6 +232,8 @@ float CYLINDER_PI_OUT = 0;
 float CYLINDER_PI_OUT_MAX = 2000;
 float CYLINDER_PI_OUT_MIN = -2000;
 
+float CYLINDER_PI_Kp_new = CYLINDER_PI_Kp;
+
 uint8_t  CYLINDER_I_FLAG = 1;
 
 float CYLINDER_PI_Calc(void){
@@ -249,7 +251,16 @@ float CYLINDER_PI_Calc(void){
 
     CYLINDER_Pos_PI_Err = CYLINDER_Pos - CYLINDER_Pos_Fb_F;
 
-    CYLINDER_P_OUT 	=						CYLINDER_PI_Kp * CYLINDER_Pos_PI_Err;
+    if(CYLINDER_Pos_PI_Err < 0 ){
+    	CYLINDER_PI_Kp_new = CYLINDER_PI_Kp * 0.7;
+    }
+    else{
+    	CYLINDER_PI_Kp_new = CYLINDER_PI_Kp;
+    }
+
+    CYLINDER_P_OUT 	=						CYLINDER_PI_Kp_new * CYLINDER_Pos_PI_Err;
+//    CYLINDER_P_OUT 	=						CYLINDER_PI_Kp * CYLINDER_Pos_PI_Err;
+
     if(CYLINDER_I_FLAG){
     	CYLINDER_I_OUT 	= CYLINDER_I_OUT  + 	CYLINDER_PI_Ki * CYLINDER_Pos_PI_Err;
     }
