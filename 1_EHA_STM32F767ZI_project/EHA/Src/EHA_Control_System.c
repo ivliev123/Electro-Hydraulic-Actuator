@@ -40,9 +40,9 @@ int8_t CYLINDER_Dir = 0;
 	#define CYLINDER_PI_Ki        0
 #elif   (System_Mode  == 'D')
 	#define DC_MOTOR_PI_Kp        1	//1
-	#define DC_MOTOR_PI_Ki        0.05	//0.1
+	#define DC_MOTOR_PI_Ki        0.1	//0.1
 
-	#define CYLINDER_PI_Kp        4		//10
+	#define CYLINDER_PI_Kp        10		//10
 	#define CYLINDER_PI_Ki        0
 
 #else
@@ -430,7 +430,7 @@ uint8_t pos_stage = 0;
 
 
 //#define amplitude  1000
-#define amplitude  4000
+#define amplitude  1000
 #define half_amplitude  amplitude/2
 
 #define time_0  0
