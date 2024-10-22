@@ -1,156 +1,102 @@
 clc;
 clear all;
 
-A_filename = 'M_eksp_4_1.csv';
-A_1 = dlmread(A_filename, ';', 1, 0);
-A_filename = 'M_eksp_4_2.csv';
-A_2 = dlmread(A_filename, ';', 1, 0);
-A_filename = 'M_eksp_4_3.csv';
-A_3 = dlmread(A_filename, ';', 1, 0);
-A_filename = 'M_eksp_4_4.csv';
-A_4 = dlmread(A_filename, ';', 1, 0);
+path_data_exp = '../DATA_Experiment_Processed/';
+% path_data_exp = "../DATA_Experiment/";
+path_data_sim = "../DATA_Simulation/";
+
+filename = path_data_exp + "exp_data_4_1.csv";
+exp_data_1 = dlmread(filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_4_2.csv";
+exp_data_2 = dlmread(filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_4_3.csv";
+exp_data_3 = dlmread(filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_4_4.csv";
+exp_data_4 = dlmread(filename, ';', 1, 0);
 
 
+EXP_1_Time          = exp_data_1(:,1)-1.584;
+EXP_1_PosRef        = exp_data_1(:,2);
+EXP_1_PosFb         = exp_data_1(:,3);
+EXP_1_Pressure_A    = exp_data_1(:,4);
+EXP_1_Pressure_B    = exp_data_1(:,5);
+EXP_1_Speed         = exp_data_1(:,6);
+EXP_1_Velocity      = exp_data_1(:,7);
+Exp_1_Current       = exp_data_1(:,8);
 
-k_P_A = 36 / 4095 * 400 /10;
-k_P_B = 36 / 4095 * 400 /20;
+EXP_2_Time          = exp_data_2(:,1)-1.515;
+EXP_2_PosRef        = exp_data_2(:,2);
+EXP_2_PosFb         = exp_data_2(:,3);
+EXP_2_Pressure_A    = exp_data_2(:,4);
+EXP_2_Pressure_B    = exp_data_2(:,5);
+EXP_2_Speed         = exp_data_2(:,6);
+EXP_2_Velocity      = exp_data_2(:,7);
+Exp_2_Current       = exp_data_2(:,8);
 
-B_filename = 'M_OSC_eksp_4_1new.csv';
-B_1 = dlmread(B_filename, ';', 1, 0);
-B_Time_1 = B_1(:,1)*0.0006 + 4.4381 - 6.10471; %4_1
-B_P_A_1 = B_1(:,2) * k_P_A;
-B_P_B_1 = B_1(:,3)* k_P_B;
-B_sinchro_1 = B_1(:,4);
+EXP_3_Time          = exp_data_3(:,1)-1.615;
+EXP_3_PosRef        = exp_data_3(:,2);
+EXP_3_PosFb         = exp_data_3(:,3);
+EXP_3_Pressure_A    = exp_data_3(:,4);
+EXP_3_Pressure_B    = exp_data_3(:,5);
+EXP_3_Speed         = exp_data_3(:,6);
+EXP_3_Velocity      = exp_data_3(:,7);
+Exp_3_Current       = exp_data_3(:,8);
 
-B_filename = 'M_OSC_eksp_4_2new.csv';
-B_2 = dlmread(B_filename, ';', 1, 0);
-B_Time_2 = B_2(:,1)*0.0006 + 4.4085 - 6.1978; %4_2
-B_P_A_2 = B_2(:,2) * k_P_A;
-B_P_B_2 = B_2(:,3)* k_P_B;
-B_sinchro_2 = B_2(:,4);
+EXP_4_Time          = exp_data_4(:,1)-1.568;
+EXP_4_PosRef        = exp_data_4(:,2);
+EXP_4_PosFb         = exp_data_4(:,3);
+EXP_4_Pressure_A    = exp_data_4(:,4);
+EXP_4_Pressure_B    = exp_data_4(:,5);
+EXP_4_Speed         = exp_data_4(:,6);
+EXP_4_Velocity      = exp_data_4(:,7);
+Exp_4_Current       = exp_data_4(:,8);
 
-B_filename = 'M_OSC_eksp_4_3new.csv';
-B_3 = dlmread(B_filename, ';', 1, 0);
-B_Time_3 = B_3(:,1)*0.0006 +4.42 - 6.16558; %4_2
-B_P_A_3 = B_3(:,2) * k_P_A;
-B_P_B_3 = B_3(:,3)* k_P_B;
-B_sinchro_3 = B_3(:,4);
+% % % % % % % % % % % % % % % % % % % % % 
 
-B_filename = 'M_OSC_eksp_4_4new.csv';
-B_4 = dlmread(B_filename, ';', 1, 0);
-B_Time_4 = B_4(:,1)*0.0006 - 1.71593; %4_4
-B_P_A_4 = B_4(:,2) * k_P_A;
-B_P_B_4 = B_4(:,3)* k_P_B;
-B_sinchro_4 = B_4(:,4);
-
-
-
-
-
-
-
-%pos % % % % % % % % % % % % % % % % % % % % % 
-
-load('pos_4_1.mat', 'pos');
-C_1 = pos;
-load('pos_4_2.mat', 'pos');
-C_2 = pos;
-load('pos_4_3.mat', 'pos');
-C_3 = pos;
-load('pos_4_4.mat', 'pos');
-C_4 = pos;
+load(path_data_sim + 'sim_data_1_1.mat', 'data');
+sim_data_1 = data;
+% load(path_data_sim + 'sim_data_1_2.mat', 'data');
+% sim_data_2 = data;
+% load(path_data_sim + 'sim_data_1_3.mat', 'data');
+% sim_data_3 = data;
+% load(path_data_sim + 'sim_data_1_4.mat', 'data');
+% sim_data_4 = data;
 
 
+SIM_1_Time          = sim_data_1(1,:);
+SIM_1_PosRef        = sim_data_1(2,:) * 1000;
+SIM_1_PosFb         = sim_data_1(3,:) * 1000;
 
-
-C_Time_1 = C_1(1,:)*1000 + 60; % A_4_1
-C_Time_2 = C_2(1,:)*1000 + 27; % A_4_2
-C_Time_3 = C_3(1,:)*1000 + 40; % A_4_3
-C_Time_4 = C_4(1,:)*1000 + 20; % A_4_4
-
-
-C_Time_1 = C_Time_1 / 1000;
-C_Time_2 = C_Time_2 / 1000;
-C_Time_3 = C_Time_3 / 1000;
-C_Time_4 = C_Time_4 / 1000;
-
-
-C_PosRef_1 = C_1(3,:); 
-C_PosFb_1 = C_1(2,:); 
-C_PosRef_2 = C_2(3,:); 
-C_PosFb_2 = C_2(2,:); 
-C_PosRef_3 = C_3(3,:); 
-C_PosFb_3 = C_3(2,:); 
-C_PosRef_4 = C_4(3,:); 
-C_PosFb_4 = C_4(2,:); 
-
-
-
-A_Time_1 = A_1(:,1)*0.01;
-A_PosRef_1 = A_1(:,2)*0.025 * -1;
-A_PosFb_1 = A_1(:,3)*0.025 * -1;
-A_sinchro_1 = A_1(:,4);
-A_Vel_1 = A_1(:,5)* -1 * 4.88; %RPM
-A_PosErr_1 = A_PosRef_1 - A_PosFb_1;
-
-
-A_Time_2 = A_2(:,1)*0.01;
-A_PosRef_2 = A_2(:,2)*0.025 * -1;
-A_PosFb_2 = A_2(:,3)*0.025 * -1;
-A_Vel_2 = A_2(:,5)* -1 * 4.88; %RPM
-A_PosErr_2 = A_PosRef_2 - A_PosFb_2;
-
-A_Time_3 = A_3(:,1)*0.01;
-A_PosRef_3 = A_3(:,2)*0.025 * -1;
-A_PosFb_3 = A_3(:,3)*0.025 * -1;
-A_Vel_3 = A_3(:,5)* -1 * 4.88; %RPM
-A_PosErr_3 = A_PosRef_3 - A_PosFb_3;
-
-A_Time_4 = A_4(:,1)*0.01;
-A_PosRef_4 = A_4(:,2)*0.025 * -1;
-A_PosFb_4 = A_4(:,3)*0.025 * -1;
-A_Vel_4 = A_4(:,5)* -1 * 4.88; %RPM
-A_PosErr_4 = A_PosRef_4 - A_PosFb_4;
 
 t = tiledlayout(2,2);
-t.TileSpacing = 'compact';
-
-
-
+t.TileSpacing = 'tight';
 
 nexttile
 hold on 
 yyaxis left
-plot(C_Time_1, C_PosRef_1, '-k', 'LineWidth', 0.5);
-plot(C_Time_1, C_PosFb_1, '--k', 'LineWidth', 0.5);
-plot(A_Time_1, A_PosFb_1, ':k', 'LineWidth', 0.5);
-
-% plot(A_Time_1, A_PosRef_1, '--k', 'LineWidth', 0.5);
-
-% plot(A_Time_1, A_sinchro_1, '--k', 'LineWidth', 0.5);
-% plot(B_Time_1, B_sinchro_1, '--k', 'LineWidth', 0.5);
+plot(EXP_1_Time, EXP_1_PosRef, '-k', 'LineWidth', 0.5);
+plot(EXP_1_Time, EXP_1_PosFb, '-r', 'LineWidth', 0.5);
+% plot(SIM_1_Time, SIM_1_PosRef, 'r', 'LineWidth', 0.5);
+plot(SIM_1_Time, SIM_1_PosFb, '-g', 'LineWidth', 0.5);
 ylim([-5 60])
 ylabel('Coordinate, mm', 'FontSize', 12, 'Color','k');
 
 yyaxis right
-plot(B_Time_1, B_P_A_1, '-squarek', 'MarkerSize', 3, 'MarkerIndices',1:1000:length(B_P_A_1), 'LineWidth', 0.5);
-plot(B_Time_1, B_P_B_1, '-ok', 'MarkerSize', 3, 'MarkerIndices',1:1000:length(B_P_B_1), 'LineWidth', 0.5);
-% plot(B_Time_1, B_P_A_1, '--k', 'LineWidth', 0.5);
-% plot(B_Time_1, B_P_B_1, '--k', 'LineWidth', 0.5);
+plot(EXP_1_Time, EXP_1_Pressure_A, '-b', 'MarkerSize', 3, 'MarkerIndices',1:1000:length(EXP_1_Pressure_A), 'LineWidth', 0.5);
+plot(EXP_1_Time, EXP_1_Pressure_B, '-m', 'MarkerSize', 3, 'MarkerIndices',1:1000:length(EXP_1_Pressure_B), 'LineWidth', 0.5);
 ylabel('Pressure, bar', 'FontSize', 12, 'Color','k');
-ylim([0 60])
+ylim([0 80])
 ax = gca;
 ax.YAxis(1).Color = 'k';
 ax.YAxis(2).Color = 'k';
-
-
-
-legend('X_t_a_s_k, mm', 'X_s_i_m, mm', 'X_e_x_p, mm', 'P_A_e_x_p, bar', 'P_B_e_x_p, bar', 'FontSize', 12); 
+% legend('X_t_a_s_k, mm', 'X_s_i_m, mm', 'X_t_a_s_k EXP, mm', 'X_e_x_p, mm', 'P_A_e_x_p, bar', 'P_B_e_x_p, bar', 'FontSize', 10); 
+lgd = legend('X_t_a_s_k, mm', 'X_e_x_p, mm', 'X_s_i_m, mm', 'P_A_e_x_p, bar', 'P_B_e_x_p, bar', 'FontSize', 10); 
+lgd.BoxFace.ColorType = 'truecoloralpha';
+lgd.BoxFace.ColorData = uint8([255; 255; 255; 100]); 
 
 xlim([0 25])
 xlabel('Time, s', 'FontSize', 12, 'Color','k'); 
 title('a');
-
 grid on
 grid minor
 hold off 
@@ -159,31 +105,27 @@ hold off
 nexttile
 hold on 
 yyaxis left
-plot(C_Time_2, C_PosRef_2, '-k', 'LineWidth', 0.5);
-plot(C_Time_2, C_PosFb_2, '--k', 'LineWidth', 0.5);
-plot(A_Time_2, A_PosFb_2, ':k', 'LineWidth', 0.5);
-
-% plot(A_Time_2, A_PosRef_2, '--k', 'LineWidth', 0.5);
-
-% plot(A_Time_2, A_sinchro_2, '--k', 'LineWidth', 0.5);
-% plot(B_Time_2, B_sinchro_2, '--k', 'LineWidth', 0.5);
+plot(EXP_2_Time, EXP_2_PosRef, '-k', 'LineWidth', 0.5);
+plot(EXP_2_Time, EXP_2_PosFb, '-r', 'LineWidth', 0.5);
+% plot(SIM_1_Time, SIM_1_PosRef, 'r', 'LineWidth', 0.5);
+plot(SIM_1_Time, SIM_1_PosFb, '-g', 'LineWidth', 0.5);
 ylim([-5 60])
 ylabel('Coordinate, mm', 'FontSize', 12, 'Color','k');
 
 yyaxis right
-plot(B_Time_2, B_P_A_2, '-squarek', 'MarkerSize', 3, 'MarkerIndices',1:1000:length(B_P_A_2), 'LineWidth', 0.5);
-plot(B_Time_2, B_P_B_2, '-ok', 'MarkerSize', 3, 'MarkerIndices',1:1000:length(B_P_B_2), 'LineWidth', 0.5);
-% plot(B_Time_2, B_P_A_2, '--k', 'LineWidth', 0.5);
-% plot(B_Time_2, B_P_B_2, '--k', 'LineWidth', 0.5);
+plot(EXP_2_Time, EXP_2_Pressure_A, '-b', 'MarkerSize', 3, 'MarkerIndices',1:1000:length(EXP_2_Pressure_A), 'LineWidth', 0.5);
+plot(EXP_2_Time, EXP_2_Pressure_B, '-m', 'MarkerSize', 3, 'MarkerIndices',1:1000:length(EXP_2_Pressure_B), 'LineWidth', 0.5);
 ylabel('Pressure, bar', 'FontSize', 12, 'Color','k');
-ylim([0 60])
+ylim([0 80])
 ax = gca;
 ax.YAxis(1).Color = 'k';
 ax.YAxis(2).Color = 'k';
 
+% legend('X_t_a_s_k, mm', 'X_s_i_m, mm', 'X_e_x_p, mm', 'P_A_e_x_p, bar', 'P_B_e_x_p, bar', 'FontSize', 10); 
+lgd = legend('X_t_a_s_k, mm', 'X_e_x_p, mm', 'X_s_i_m, mm', 'P_A_e_x_p, bar', 'P_B_e_x_p, bar', 'FontSize', 10); 
+lgd.BoxFace.ColorType = 'truecoloralpha';
+lgd.BoxFace.ColorData = uint8([255; 255; 255; 100]); 
 
-
-legend('X_t_a_s_k, mm', 'X_s_i_m, mm', 'X_e_x_p, mm', 'P_A_e_x_p, bar', 'P_B_e_x_p, bar', 'FontSize', 12); 
 
 xlim([0 25])
 xlabel('Time, s', 'FontSize', 12, 'Color','k'); 
@@ -199,36 +141,32 @@ hold off
 nexttile
 hold on 
 yyaxis left
-plot(C_Time_3, C_PosRef_3, '-k', 'LineWidth', 0.5);
-plot(C_Time_3, C_PosFb_3, '--k', 'LineWidth', 0.5);
-plot(A_Time_3, A_PosFb_3, ':k', 'LineWidth', 0.5);
+plot(EXP_3_Time, EXP_3_PosRef, '-k', 'LineWidth', 0.5);
+plot(EXP_3_Time, EXP_3_PosFb, '-r', 'LineWidth', 0.5);
+% plot(SIM_1_Time, SIM_1_PosRef, 'r', 'LineWidth', 0.5);
+plot(SIM_1_Time, SIM_1_PosFb, '-g', 'LineWidth', 0.5);
 
-% plot(A_Time_3, A_PosRef_3, '--k', 'LineWidth', 0.5);
-
-% plot(A_Time_3, A_sinchro_3, '--k', 'LineWidth', 0.5);
-% plot(B_Time_3, B_sinchro_3, '--k', 'LineWidth', 0.5);
 ylim([-5 60])
 ylabel('Coordinate, mm', 'FontSize', 12, 'Color','k');
 
 yyaxis right
-plot(B_Time_3, B_P_A_3, '-squarek', 'MarkerSize', 3, 'MarkerIndices',1:1000:length(B_P_A_3), 'LineWidth', 0.5);
-plot(B_Time_3, B_P_B_3, '-ok', 'MarkerSize', 3, 'MarkerIndices',1:1000:length(B_P_B_3), 'LineWidth', 0.5);
-% plot(B_Time_3, B_P_A_3, '--k', 'LineWidth', 0.5);
-% plot(B_Time_3, B_P_B_3, '--k', 'LineWidth', 0.5);
+plot(EXP_3_Time, EXP_3_Pressure_A, '-b', 'MarkerSize', 3, 'MarkerIndices',1:1000:length(EXP_3_Pressure_A), 'LineWidth', 0.5);
+plot(EXP_3_Time, EXP_3_Pressure_B, '-m', 'MarkerSize', 3, 'MarkerIndices',1:1000:length(EXP_3_Pressure_B), 'LineWidth', 0.5);
 ylabel('Pressure, bar', 'FontSize', 12, 'Color','k');
-ylim([0 60])
+ylim([0 80])
 ax = gca;
 ax.YAxis(1).Color = 'k';
 ax.YAxis(2).Color = 'k';
 
+% legend('X_t_a_s_k, mm', 'X_s_i_m, mm', 'X_e_x_p, mm', 'P_A_e_x_p, bar', 'P_B_e_x_p, bar', 'FontSize', 10); 
+lgd = legend('X_t_a_s_k, mm', 'X_e_x_p, mm', 'X_s_i_m, mm', 'P_A_e_x_p, bar', 'P_B_e_x_p, bar', 'FontSize', 10); 
+lgd.BoxFace.ColorType = 'truecoloralpha';
+lgd.BoxFace.ColorData = uint8([255; 255; 255; 100]); 
 
-
-legend('X_t_a_s_k, mm', 'X_s_i_m, mm', 'X_e_x_p, mm', 'P_A_e_x_p, bar', 'P_B_e_x_p, bar', 'FontSize', 12); 
 
 xlim([0 25])
 xlabel('Time, s', 'FontSize', 12, 'Color','k'); 
 title('c');
-
 grid on
 grid minor
 hold off 
@@ -238,31 +176,27 @@ hold off
 nexttile
 hold on 
 yyaxis left
-plot(C_Time_4, C_PosRef_4, '-k', 'LineWidth', 0.5);
-plot(C_Time_4, C_PosFb_4, '--k', 'LineWidth', 0.5);
-plot(A_Time_4, A_PosFb_4, ':k', 'LineWidth', 0.5);
-
-% plot(A_Time_4, A_PosRef_4, '--k', 'LineWidth', 0.5);
-
-% plot(A_Time_4, A_sinchro_4, '--k', 'LineWidth', 0.5);
-% plot(B_Time_4, B_sinchro_4, '--k', 'LineWidth', 0.5);
+plot(EXP_4_Time, EXP_4_PosRef, '-k', 'LineWidth', 0.5);
+plot(EXP_4_Time, EXP_4_PosFb, '-r', 'LineWidth', 0.5);
+% plot(SIM_1_Time, SIM_1_PosRef, 'r', 'LineWidth', 0.5);
+plot(SIM_1_Time, SIM_1_PosFb, '-g', 'LineWidth', 0.5);
 ylim([-5 60])
 ylabel('Coordinate, mm', 'FontSize', 12, 'Color','k');
 
 yyaxis right
-plot(B_Time_4, B_P_A_4, '-squarek', 'MarkerSize', 3, 'MarkerIndices',1:1000:length(B_P_A_4), 'LineWidth', 0.5);
-plot(B_Time_4, B_P_B_4, '-ok', 'MarkerSize', 3, 'MarkerIndices',1:1000:length(B_P_B_4), 'LineWidth', 0.5);
-% plot(B_Time_4, B_P_A_4, '--k', 'LineWidth', 0.5);
-% plot(B_Time_4, B_P_B_4, '--k', 'LineWidth', 0.5);
+plot(EXP_4_Time, EXP_4_Pressure_A, '-b', 'MarkerSize', 3, 'MarkerIndices',1:1000:length(EXP_4_Pressure_A), 'LineWidth', 0.5);
+plot(EXP_4_Time, EXP_4_Pressure_B, '-m', 'MarkerSize', 3, 'MarkerIndices',1:1000:length(EXP_4_Pressure_B), 'LineWidth', 0.5);
 ylabel('Pressure, bar', 'FontSize', 12, 'Color','k');
-ylim([0 60])
+ylim([0 80])
 ax = gca;
 ax.YAxis(1).Color = 'k';
 ax.YAxis(2).Color = 'k';
 
 
-
-legend('X_t_a_s_k, mm', 'X_s_i_m, mm', 'X_e_x_p, mm', 'P_A_e_x_p, bar', 'P_B_e_x_p, bar');
+% legend('X_t_a_s_k, mm', 'X_s_i_m, mm', 'X_e_x_p, mm', 'P_A_e_x_p, bar', 'P_B_e_x_p, bar', 'FontSize', 10); 
+lgd = legend('X_t_a_s_k, mm', 'X_e_x_p, mm', 'X_s_i_m, mm', 'P_A_e_x_p, bar', 'P_B_e_x_p, bar', 'FontSize', 10); 
+lgd.BoxFace.ColorType = 'truecoloralpha';
+lgd.BoxFace.ColorData = uint8([255; 255; 255; 100]); 
 
 xlim([0 25])
 xlabel('Time, s', 'FontSize', 12, 'Color','k'); 
@@ -272,7 +206,6 @@ grid on
 grid minor
 hold off 
 
-
-%exportgraphics(t,'BW_ENG_NEW/analiz_pos_4_with_bar.jpg','Resolution',300)
+%exportgraphics(t,'BW_ENG_NEW/analiz_pos_1_with_bar.jpg','Resolution',300)
 set(gcf, 'Color', 'w')
-export_fig BW_ENG_NEW/analiz_pos_4_with_bar.png -painters -m3
+export_fig ../FIGURE/analiz_pos_4_with_bar.png -painters -m3

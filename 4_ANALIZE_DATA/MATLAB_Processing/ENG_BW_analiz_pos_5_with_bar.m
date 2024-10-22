@@ -5,17 +5,17 @@ path_data_exp = '../DATA_Experiment_Processed/';
 % path_data_exp = "../DATA_Experiment/";
 path_data_sim = "../DATA_Simulation/";
 
-filename = path_data_exp + "exp_data_1_1.csv";
+filename = path_data_exp + "exp_data_5_1.csv";
 exp_data_1 = dlmread(filename, ';', 1, 0);
-filename = path_data_exp + "exp_data_1_2.csv";
+filename = path_data_exp + "exp_data_5_2.csv";
 exp_data_2 = dlmread(filename, ';', 1, 0);
-filename = path_data_exp + "exp_data_1_3.csv";
+filename = path_data_exp + "exp_data_5_3.csv";
 exp_data_3 = dlmread(filename, ';', 1, 0);
-filename = path_data_exp + "exp_data_1_4.csv";
+filename = path_data_exp + "exp_data_5_4.csv";
 exp_data_4 = dlmread(filename, ';', 1, 0);
 
 
-EXP_1_Time          = exp_data_1(:,1)-1.583;
+EXP_1_Time          = exp_data_1(:,1)-1.531;
 EXP_1_PosRef        = exp_data_1(:,2);
 EXP_1_PosFb         = exp_data_1(:,3);
 EXP_1_Pressure_A    = exp_data_1(:,4);
@@ -24,7 +24,7 @@ EXP_1_Speed         = exp_data_1(:,6);
 EXP_1_Velocity      = exp_data_1(:,7);
 Exp_1_Current       = exp_data_1(:,8);
 
-EXP_2_Time          = exp_data_2(:,1)-0.529;
+EXP_2_Time          = exp_data_2(:,1)-1.591;
 EXP_2_PosRef        = exp_data_2(:,2);
 EXP_2_PosFb         = exp_data_2(:,3);
 EXP_2_Pressure_A    = exp_data_2(:,4);
@@ -33,7 +33,7 @@ EXP_2_Speed         = exp_data_2(:,6);
 EXP_2_Velocity      = exp_data_2(:,7);
 Exp_2_Current       = exp_data_2(:,8);
 
-EXP_3_Time          = exp_data_3(:,1)-1.599;
+EXP_3_Time          = exp_data_3(:,1)-1.548;
 EXP_3_PosRef        = exp_data_3(:,2);
 EXP_3_PosFb         = exp_data_3(:,3);
 EXP_3_Pressure_A    = exp_data_3(:,4);
@@ -42,7 +42,7 @@ EXP_3_Speed         = exp_data_3(:,6);
 EXP_3_Velocity      = exp_data_3(:,7);
 Exp_3_Current       = exp_data_3(:,8);
 
-EXP_4_Time          = exp_data_4(:,1)-1.566;
+EXP_4_Time          = exp_data_4(:,1)-0.599;
 EXP_4_PosRef        = exp_data_4(:,2);
 EXP_4_PosFb         = exp_data_4(:,3);
 EXP_4_Pressure_A    = exp_data_4(:,4);
@@ -63,7 +63,7 @@ sim_data_1 = data;
 % sim_data_4 = data;
 
 
-SIM_1_Time          = sim_data_1(1,:) + -0.017 - 1.583;
+SIM_1_Time          = sim_data_1(1,:);
 SIM_1_PosRef        = sim_data_1(2,:) * 1000;
 SIM_1_PosFb         = sim_data_1(3,:) * 1000;
 
@@ -197,6 +197,8 @@ ax.YAxis(2).Color = 'k';
 lgd = legend('X_t_a_s_k, mm', 'X_e_x_p, mm', 'X_s_i_m, mm', 'P_A_e_x_p, bar', 'P_B_e_x_p, bar', 'FontSize', 10); 
 lgd.BoxFace.ColorType = 'truecoloralpha';
 lgd.BoxFace.ColorData = uint8([255; 255; 255; 100]); 
+lgd.BoxFace.ColorType = 'truecoloralpha';
+lgd.BoxFace.ColorData = uint8([255; 255; 255; 100]);
 
 xlim([0 25])
 xlabel('Time, s', 'FontSize', 12, 'Color','k'); 
@@ -208,4 +210,4 @@ hold off
 
 %exportgraphics(t,'BW_ENG_NEW/analiz_pos_1_with_bar.jpg','Resolution',300)
 set(gcf, 'Color', 'w')
-export_fig ../FIGURE/analiz_pos_1_with_bar.png -painters -m3
+export_fig ../FIGURE/analiz_pos_5_with_bar.png -painters -m3
