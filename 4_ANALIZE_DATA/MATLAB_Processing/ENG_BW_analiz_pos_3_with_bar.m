@@ -53,7 +53,7 @@ Exp_4_Current       = exp_data_4(:,8);
 
 % % % % % % % % % % % % % % % % % % % % % 
 
-load(path_data_sim + 'sim_data_1_1.mat', 'data');
+load(path_data_sim + 'sim_data_3_1.mat', 'data');
 sim_data_1 = data;
 % load(path_data_sim + 'sim_data_1_2.mat', 'data');
 % sim_data_2 = data;
@@ -63,7 +63,7 @@ sim_data_1 = data;
 % sim_data_4 = data;
 
 
-SIM_1_Time          = sim_data_1(1,:);
+SIM_1_Time          = sim_data_1(1,:) - 1.6;
 SIM_1_PosRef        = sim_data_1(2,:) * 1000;
 SIM_1_PosFb         = sim_data_1(3,:) * 1000;
 
@@ -76,7 +76,7 @@ hold on
 yyaxis left
 plot(EXP_1_Time, EXP_1_PosRef, '-k', 'LineWidth', 0.5);
 plot(EXP_1_Time, EXP_1_PosFb, '-r', 'LineWidth', 0.5);
-% plot(SIM_1_Time, SIM_1_PosRef, 'r', 'LineWidth', 0.5);
+% plot(SIM_1_Time, SIM_1_PosRef, '--r', 'LineWidth', 0.5);
 plot(SIM_1_Time, SIM_1_PosFb, '-g', 'LineWidth', 0.5);
 ylim([-5 60])
 ylabel('Coordinate, mm', 'FontSize', 12, 'Color','k');

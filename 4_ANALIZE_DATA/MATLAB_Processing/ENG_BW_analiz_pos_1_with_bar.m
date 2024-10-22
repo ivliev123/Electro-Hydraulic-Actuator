@@ -63,7 +63,7 @@ sim_data_1 = data;
 % sim_data_4 = data;
 
 
-SIM_1_Time          = sim_data_1(1,:) + -0.017 - 1.583;
+SIM_1_Time          = sim_data_1(1,:) - 1.6;
 SIM_1_PosRef        = sim_data_1(2,:) * 1000;
 SIM_1_PosFb         = sim_data_1(3,:) * 1000;
 
