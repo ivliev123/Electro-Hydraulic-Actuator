@@ -55,17 +55,29 @@ Exp_4_Current       = exp_data_4(:,8);
 
 load(path_data_sim + 'sim_data_4_1.mat', 'data');
 sim_data_1 = data;
-% load(path_data_sim + 'sim_data_1_2.mat', 'data');
-% sim_data_2 = data;
-% load(path_data_sim + 'sim_data_1_3.mat', 'data');
-% sim_data_3 = data;
-% load(path_data_sim + 'sim_data_1_4.mat', 'data');
-% sim_data_4 = data;
+load(path_data_sim + 'sim_data_4_2.mat', 'data');
+sim_data_2 = data;
+load(path_data_sim + 'sim_data_4_3.mat', 'data');
+sim_data_3 = data;
+load(path_data_sim + 'sim_data_4_4.mat', 'data');
+sim_data_4 = data;
 
 
 SIM_1_Time          = sim_data_1(1,:) - 1.6;
 SIM_1_PosRef        = sim_data_1(2,:) * 1000;
 SIM_1_PosFb         = sim_data_1(3,:) * 1000;
+
+SIM_2_Time          = sim_data_2(1,:) - 1.6;
+SIM_2_PosRef        = sim_data_2(2,:) * 1000;
+SIM_2_PosFb         = sim_data_2(3,:) * 1000;
+
+SIM_3_Time          = sim_data_3(1,:) - 1.6;
+SIM_3_PosRef        = sim_data_3(2,:) * 1000;
+SIM_3_PosFb         = sim_data_3(3,:) * 1000;
+
+SIM_4_Time          = sim_data_4(1,:) - 1.6;
+SIM_4_PosRef        = sim_data_4(2,:) * 1000;
+SIM_4_PosFb         = sim_data_4(3,:) * 1000;
 
 
 t = tiledlayout(2,2);
@@ -108,7 +120,7 @@ yyaxis left
 plot(EXP_2_Time, EXP_2_PosRef, '-k', 'LineWidth', 0.5);
 plot(EXP_2_Time, EXP_2_PosFb, '-r', 'LineWidth', 0.5);
 % plot(SIM_1_Time, SIM_1_PosRef, 'r', 'LineWidth', 0.5);
-plot(SIM_1_Time, SIM_1_PosFb, '-g', 'LineWidth', 0.5);
+plot(SIM_2_Time, SIM_2_PosFb, '-g', 'LineWidth', 0.5);
 ylim([-5 60])
 ylabel('Coordinate, mm', 'FontSize', 12, 'Color','k');
 
@@ -144,7 +156,7 @@ yyaxis left
 plot(EXP_3_Time, EXP_3_PosRef, '-k', 'LineWidth', 0.5);
 plot(EXP_3_Time, EXP_3_PosFb, '-r', 'LineWidth', 0.5);
 % plot(SIM_1_Time, SIM_1_PosRef, 'r', 'LineWidth', 0.5);
-plot(SIM_1_Time, SIM_1_PosFb, '-g', 'LineWidth', 0.5);
+plot(SIM_3_Time, SIM_3_PosFb, '-g', 'LineWidth', 0.5);
 
 ylim([-5 60])
 ylabel('Coordinate, mm', 'FontSize', 12, 'Color','k');
@@ -179,7 +191,7 @@ yyaxis left
 plot(EXP_4_Time, EXP_4_PosRef, '-k', 'LineWidth', 0.5);
 plot(EXP_4_Time, EXP_4_PosFb, '-r', 'LineWidth', 0.5);
 % plot(SIM_1_Time, SIM_1_PosRef, 'r', 'LineWidth', 0.5);
-plot(SIM_1_Time, SIM_1_PosFb, '-g', 'LineWidth', 0.5);
+plot(SIM_4_Time, SIM_4_PosFb, '-g', 'LineWidth', 0.5);
 ylim([-5 60])
 ylabel('Coordinate, mm', 'FontSize', 12, 'Color','k');
 

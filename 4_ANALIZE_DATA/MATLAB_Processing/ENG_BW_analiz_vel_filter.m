@@ -194,15 +194,6 @@ plot(A_Time3_1, A_Vel3_1, ':k', 'LineWidth', 0.5);
 plot(A_Time4_1, A_Vel4_1, '-ok', 'MarkerSize', 3, 'MarkerIndices',1:100:length(A_Vel4_1), 'LineWidth', 0.5);
 
 
-% plot(A_Time1_1, A_Vel1_1, '-r', 'LineWidth', 0.25);
-% plot(A_Time2_1, A_Vel2_1, '-g', 'LineWidth', 0.25);
-% plot(A_Time3_1, A_Vel3_1, '--b', 'LineWidth', 0.25);
-% plot(A_Time4_1, A_Vel4_1, '--', 'Color',colormap(map_2(1,:)), 'MarkerSize', 3, 'MarkerIndices',1:100:length(A_Vel4_1), 'LineWidth', 0.25);
-% plot(A_Time1_1, A_Vel1_1, '-', 'Color',colormap(map_2(1,:)), 'LineWidth', 0.5);
-% plot(A_Time2_1, A_Vel2_1, '-', 'Color',colormap(map_2(2,:)), 'LineWidth', 0.5);
-% plot(A_Time3_1, A_Vel3_1, '-', 'Color',colormap(map_2(3,:)), 'LineWidth', 0.5);
-% plot(A_Time4_1, A_Vel4_1, '-', 'Color',colormap(map_2(4,:)), 'LineWidth', 0.5);
-
 
 xlabel('Time, s', 'FontSize', 12, 'Color','k'); 
 ylabel('Angular velocity, rpm', 'FontSize', 12, 'Color','k');
@@ -227,10 +218,7 @@ plot(A_Time3_2, A_Vel3_2, ':k', 'LineWidth', 0.5);
 % plot(A_Time4_2, A_Vel4_2, '-ok', 'LineWidth', 0.5);
 plot(A_Time4_2, A_Vel4_2, '-ok', 'MarkerSize', 3, 'MarkerIndices',1:100:length(A_Vel4_2), 'LineWidth', 0.5);
 
-% plot(A_Time1_2, A_Vel1_2, '-r', 'LineWidth', 0.25);
-% plot(A_Time2_2, A_Vel2_2, '-g', 'LineWidth', 0.25);
-% plot(A_Time3_2, A_Vel3_2, '--b', 'LineWidth', 0.25);
-% plot(A_Time4_2, A_Vel4_2, '--', 'Color',colormap(map_2(1,:)), 'MarkerSize', 3, 'MarkerIndices',1:100:length(A_Vel4_2), 'LineWidth', 0.25);
+
 
 
 xlabel('Time, s', 'FontSize', 12, 'Color','k'); 
