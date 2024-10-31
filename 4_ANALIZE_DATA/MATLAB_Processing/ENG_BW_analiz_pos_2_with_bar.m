@@ -42,7 +42,7 @@ EXP_3_Speed         = exp_data_3(:,6);
 EXP_3_Velocity      = exp_data_3(:,7);
 Exp_3_Current       = exp_data_3(:,8);
 
-EXP_4_Time          = exp_data_4(:,1)-1.545;
+EXP_4_Time          = exp_data_4(:,1)-1.586;
 EXP_4_PosRef        = exp_data_4(:,2);
 EXP_4_PosFb         = exp_data_4(:,3);
 EXP_4_Pressure_A    = exp_data_4(:,4);
@@ -87,8 +87,9 @@ hold on
 yyaxis left
 plot(EXP_1_Time, EXP_1_PosRef, '-k', 'LineWidth', 0.5);
 plot(EXP_1_Time, EXP_1_PosFb, '-r', 'LineWidth', 0.5);
-% plot(SIM_1_Time, SIM_1_PosRef, '--r', 'LineWidth', 0.5);
 plot(SIM_1_Time, SIM_1_PosFb, '-g', 'LineWidth', 0.5);
+% plot(SIM_1_Time, SIM_1_PosRef, '--r', 'LineWidth', 0.5);
+
 ylim([-5 60])
 ylabel('Coordinate, mm', 'FontSize', 12, 'Color','k');
 
@@ -118,8 +119,9 @@ hold on
 yyaxis left
 plot(EXP_2_Time, EXP_2_PosRef, '-k', 'LineWidth', 0.5);
 plot(EXP_2_Time, EXP_2_PosFb, '-r', 'LineWidth', 0.5);
-% plot(SIM_1_Time, SIM_1_PosRef, 'r', 'LineWidth', 0.5);
 plot(SIM_2_Time, SIM_2_PosFb, '-g', 'LineWidth', 0.5);
+% plot(SIM_2_Time, SIM_2_PosRef, '--r', 'LineWidth', 0.5);
+
 ylim([-5 60])
 ylabel('Coordinate, mm', 'FontSize', 12, 'Color','k');
 
@@ -154,8 +156,8 @@ hold on
 yyaxis left
 plot(EXP_3_Time, EXP_3_PosRef, '-k', 'LineWidth', 0.5);
 plot(EXP_3_Time, EXP_3_PosFb, '-r', 'LineWidth', 0.5);
-% plot(SIM_1_Time, SIM_1_PosRef, 'r', 'LineWidth', 0.5);
 plot(SIM_3_Time, SIM_3_PosFb, '-g', 'LineWidth', 0.5);
+% plot(SIM_3_Time, SIM_3_PosRef, '--r', 'LineWidth', 0.5);
 
 ylim([-5 60])
 ylabel('Coordinate, mm', 'FontSize', 12, 'Color','k');
@@ -189,8 +191,9 @@ hold on
 yyaxis left
 plot(EXP_4_Time, EXP_4_PosRef, '-k', 'LineWidth', 0.5);
 plot(EXP_4_Time, EXP_4_PosFb, '-r', 'LineWidth', 0.5);
-% plot(SIM_1_Time, SIM_1_PosRef, 'r', 'LineWidth', 0.5);
 plot(SIM_4_Time, SIM_4_PosFb, '-g', 'LineWidth', 0.5);
+% plot(SIM_4_Time, SIM_4_PosRef, '--r', 'LineWidth', 0.5);
+
 ylim([-5 60])
 ylabel('Coordinate, mm', 'FontSize', 12, 'Color','k');
 

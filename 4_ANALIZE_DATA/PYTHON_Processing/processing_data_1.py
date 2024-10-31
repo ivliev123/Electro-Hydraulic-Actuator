@@ -14,6 +14,16 @@ print(len(file_name_array))
 
 # file_name_ = "exp_data_1_1"
 
+def fix_some_data(file_name_, EXP_PosFb_data):
+
+    if file_name_ == "exp_data_1_2":
+        for i in range(len(EXP_PosFb_data)):
+
+            if i >= 11798 and i<= 11893:
+                EXP_PosFb_data[i] = 1 * 0.025
+            if i >= 18812:
+                EXP_PosFb_data[i] = -1 * 0.025
+
 
 def processing_data(file_name_):
 
@@ -49,6 +59,7 @@ def processing_data(file_name_):
                 # print("dd")
                 x = 1
 
+    fix_some_data(file_name_, EXP_PosFb_data)
 
     print(len(EXP_TIME_data))
 
@@ -75,7 +86,7 @@ def processing_data(file_name_):
 
 
     EXP_Speed_data = []
-    window = 1
+    window = 20
     for i in range(window):
         # EXP_Speed_data.append(None)
         EXP_Speed_data.append(0.0)
@@ -85,7 +96,7 @@ def processing_data(file_name_):
         EXP_Speed_data.append(speed)
 
     EXP_Speed_data_DF = pd.DataFrame(EXP_Speed_data)
-    EXP_Speed_data_MA = EXP_Speed_data_DF.rolling(window=10).mean()
+    EXP_Speed_data_MA = EXP_Speed_data_DF.rolling(window=100).mean()
 
     EXP_Speed_data_2 = EXP_Speed_data_MA.values.tolist()
 

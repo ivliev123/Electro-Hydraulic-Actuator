@@ -1,149 +1,147 @@
 clc;
 clear all;
 
-A_filename = 'M_eksp_1_1_speed.csv';
-A1_1 = dlmread(A_filename, ';', 1, 0);
-A_filename = 'M_eksp_1_2_speed.csv';
-A1_2 = dlmread(A_filename, ';', 1, 0);
-A_filename = 'M_eksp_1_3_speed.csv';
-A1_3 = dlmread(A_filename, ';', 1, 0);
-A_filename = 'M_eksp_1_4_speed.csv';
-A1_4 = dlmread(A_filename, ';', 1, 0);
+path_data_exp = '../DATA_Experiment_Processed/';
+% path_data_exp = "../DATA_Experiment/";
+path_data_sim = "../DATA_Simulation/";
 
-A_filename = 'M_eksp_2_1_speed.csv';
-A2_1 = dlmread(A_filename, ';', 1, 0);
-A_filename = 'M_eksp_2_2_speed.csv';
-A2_2 = dlmread(A_filename, ';', 1, 0);
-A_filename = 'M_eksp_2_3_speed.csv';
-A2_3 = dlmread(A_filename, ';', 1, 0);
-A_filename = 'M_eksp_2_4_speed.csv';
-A2_4 = dlmread(A_filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_1_1.csv";
+exp_data_1_1 = dlmread(filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_1_2.csv";
+exp_data_1_2 = dlmread(filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_1_3.csv";
+exp_data_1_3 = dlmread(filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_1_4.csv";
+exp_data_1_4 = dlmread(filename, ';', 1, 0);
 
+filename = path_data_exp + "exp_data_2_1.csv";
+exp_data_2_1 = dlmread(filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_2_2.csv";
+exp_data_2_2 = dlmread(filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_2_3.csv";
+exp_data_2_3 = dlmread(filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_2_4.csv";
+exp_data_2_4 = dlmread(filename, ';', 1, 0);
 
-A_filename = 'M_eksp_3_1_speed.csv';
-A3_1 = dlmread(A_filename, ';', 1, 0);
-A_filename = 'M_eksp_3_2_speed.csv';
-A3_2 = dlmread(A_filename, ';', 1, 0);
-A_filename = 'M_eksp_3_3_speed.csv';
-A3_3 = dlmread(A_filename, ';', 1, 0);
-A_filename = 'M_eksp_3_4_speed.csv';
-A3_4 = dlmread(A_filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_3_1.csv";
+exp_data_3_1 = dlmread(filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_3_2.csv";
+exp_data_3_2 = dlmread(filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_3_3.csv";
+exp_data_3_3 = dlmread(filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_3_4.csv";
+exp_data_3_4 = dlmread(filename, ';', 1, 0);
 
-
-A_filename = 'M_eksp_4_1_speed.csv';
-A4_1 = dlmread(A_filename, ';', 1, 0);
-A_filename = 'M_eksp_4_2_speed.csv';
-A4_2 = dlmread(A_filename, ';', 1, 0);
-A_filename = 'M_eksp_4_3_speed.csv';
-A4_3 = dlmread(A_filename, ';', 1, 0);
-A_filename = 'M_eksp_4_4_speed.csv';
-A4_4 = dlmread(A_filename, ';', 1, 0);
-
-
-
-
-A_Time1_1 = A1_1(:,1);
-A_Speed1_1 = A1_1(:,2); %RPM
-A_Speed1_1_F = A1_1(:,3); %RPM
-
-A_Time1_2 = A1_2(:,1);
-A_Speed1_2 = A1_2(:,2); %RPM
-A_Speed1_2_F = A1_2(:,3); %RPM
+filename = path_data_exp + "exp_data_4_1.csv";
+exp_data_4_1 = dlmread(filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_4_2.csv";
+exp_data_4_2 = dlmread(filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_4_3.csv";
+exp_data_4_3 = dlmread(filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_4_4.csv";
+exp_data_4_4 = dlmread(filename, ';', 1, 0);
 
 
-A_Time1_3 = A1_3(:,1);
-A_Speed1_3 = A1_3(:,2); %RPM
-A_Speed1_3_F = A1_3(:,3); %RPM
+EXP_1_1_Time          = exp_data_1_1(:,1)-1.583;
+EXP_1_1_Speed         = exp_data_1_1(:,6);
+EXP_1_1_Velocity      = exp_data_1_1(:,7);
 
-A_Time1_4 = A1_4(:,1);
-A_Speed1_4 = A1_4(:,2); %RPM
-A_Speed1_4_F = A1_4(:,3); %RPM
+EXP_1_2_Time          = exp_data_1_2(:,1)-0.529;
+EXP_1_2_Speed         = exp_data_1_2(:,6);
+EXP_1_2_Velocity      = exp_data_1_2(:,7);
 
-A_Time2_1 = A2_1(:,1);
-A_Speed2_1 = A2_1(:,2); %RPM
-A_Speed2_1_F = A2_1(:,3); %RPM
+EXP_1_3_Time          = exp_data_1_3(:,1)-1.599;
+EXP_1_3_Speed         = exp_data_1_3(:,6);
+EXP_1_3_Velocity      = exp_data_1_3(:,7);
 
-A_Time2_2 = A2_2(:,1);
-A_Speed2_2 = A2_2(:,2); %RPM
-A_Speed2_2_F = A2_2(:,3); %RPM
-
-
-A_Time2_3 = A2_3(:,1);
-A_Speed2_3 = A2_3(:,2); %RPM
-A_Speed2_3_F = A2_3(:,3); %RPM
+EXP_1_4_Time          = exp_data_1_4(:,1)-1.566;
+EXP_1_4_Speed         = exp_data_1_4(:,6);
+EXP_1_4_Velocity      = exp_data_1_4(:,7);
 
 
-A_Time2_4 = A2_4(:,1);
-A_Speed2_4 = A2_4(:,2); %RPM
-A_Speed2_4_F = A2_4(:,3); %RPM
+EXP_2_1_Time          = exp_data_2_1(:,1)-1.578;
+EXP_2_1_Speed         = exp_data_2_1(:,6);
+EXP_2_1_Velocity      = exp_data_2_1(:,7);
+
+EXP_2_2_Time          = exp_data_2_2(:,1)-1.528;
+EXP_2_2_Speed         = exp_data_2_2(:,6);
+EXP_2_2_Velocity      = exp_data_2_2(:,7);
+
+EXP_2_3_Time          = exp_data_2_3(:,1)-1.521;
+EXP_2_3_Speed         = exp_data_2_3(:,6);
+EXP_2_3_Velocity      = exp_data_2_3(:,7);
+
+EXP_2_4_Time          = exp_data_2_4(:,1)-1.586;
+EXP_2_4_Speed         = exp_data_2_4(:,6);
+EXP_2_4_Velocity      = exp_data_2_4(:,7);
 
 
-A_Time3_1 = A3_1(:,1);
-A_Speed3_1 = A3_1(:,2); %RPM
-A_Speed3_1_F = A3_1(:,3); %RPM
+EXP_3_1_Time          = exp_data_3_1(:,1)-1.550;
+EXP_3_1_Speed         = exp_data_3_1(:,6);
+EXP_3_1_Velocity      = exp_data_3_1(:,7);
+
+EXP_3_2_Time          = exp_data_3_2(:,1)-1.507;
+EXP_3_2_Speed         = exp_data_3_2(:,6);
+EXP_3_2_Velocity      = exp_data_3_2(:,7);
+
+EXP_3_3_Time          = exp_data_3_3(:,1)-1.558;
+EXP_3_3_Speed         = exp_data_3_3(:,6);
+EXP_3_3_Velocity      = exp_data_3_3(:,7);
+
+EXP_3_4_Time          = exp_data_3_4(:,1)-1.545;
+EXP_3_4_Speed         = exp_data_3_4(:,6);
+EXP_3_4_Velocity      = exp_data_3_4(:,7);
 
 
-A_Time3_2 = A3_2(:,1);
-A_Speed3_2 = A3_2(:,2); %RPM
-A_Speed3_2_F = A3_2(:,3); %RPM
+EXP_4_1_Time          = exp_data_4_1(:,1)-1.584;
+EXP_4_1_Speed         = exp_data_4_1(:,6);
+EXP_4_1_Velocity      = exp_data_4_1(:,7);
 
+EXP_4_2_Time          = exp_data_4_2(:,1)-1.515;
+EXP_4_2_Speed         = exp_data_4_2(:,6);
+EXP_4_2_Velocity      = exp_data_4_2(:,7);
 
-A_Time3_3 = A3_3(:,1);
-A_Speed3_3 = A3_3(:,2); %RPM
-A_Speed3_3_F = A3_3(:,3); %RPM
+EXP_4_3_Time          = exp_data_4_3(:,1)-1.615;
+EXP_4_3_Speed         = exp_data_4_3(:,6);
+EXP_4_3_Velocity      = exp_data_4_3(:,7);
 
+EXP_4_4_Time          = exp_data_4_4(:,1)-1.568;
+EXP_4_4_Speed         = exp_data_4_4(:,6);
+EXP_4_4_Velocity      = exp_data_4_4(:,7);
 
-A_Time3_4 = A3_4(:,1);
-A_Speed3_4 = A3_4(:,2); %RPM
-A_Speed3_4_F = A3_4(:,3); %RPM
-
-
-
-A_Time4_1 = A4_1(:,1);
-A_Speed4_1 = A4_1(:,2); %RPM
-A_Speed4_1_F = A4_1(:,3); %RPM
-
-
-A_Time4_2 = A4_2(:,1);
-A_Speed4_2 = A4_2(:,2); %RPM
-A_Speed4_2_F = A4_2(:,3); %RPM
-
-
-A_Time4_3 = A4_3(:,1);
-A_Speed4_3 = A4_3(:,2); %RPM
-A_Speed4_3_F = A4_3(:,3); %RPM
-
-
-A_Time4_4 = A4_4(:,1);
-A_Speed4_4 = A4_4(:,2); %RPM
-A_Speed4_4_F = A4_4(:,3); %RPM
-
-
-
-
-
+map = { '#808080',
+ '#323232',
+ '#CECECE',
+ '#000000',
+ '#ff7f00',
+ '#40E0D0',
+ '#a65628',
+ '#f781bf'};
+ 
+map_2 = validatecolor(map, 'multiple')
 
 t = tiledlayout(2,2);
 t.TileSpacing = 'compact';
 
 nexttile
 hold on 
-plot(A_Time1_1, A_Speed1_1_F, '-k', 'LineWidth', 0.5);
-plot(A_Time2_1, A_Speed2_1_F, '--k', 'LineWidth', 0.5);
-plot(A_Time3_1, A_Speed3_1_F, ':k', 'LineWidth', 0.5);
-% plot(A_Time4_1, A_Speed4_1_F, '-k', 'LineWidth', 0.5);
-MarkerInd = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200];
-plot(A_Time4_1, A_Speed4_1_F, '--ok', 'MarkerSize', 3, 'MarkerIndices',MarkerInd, 'LineWidth', 0.5); 
+plot(EXP_1_1_Time, EXP_1_1_Speed, '-r', 'LineWidth', 0.5);
+plot(EXP_2_1_Time, EXP_2_1_Speed, '-g', 'LineWidth', 0.5);
+plot(EXP_3_1_Time, EXP_3_1_Speed, '-b', 'LineWidth', 0.5);
+plot(EXP_4_1_Time, EXP_4_1_Speed, '-m', 'MarkerSize', 3, 'MarkerIndices',1:100:length(EXP_1_4_Velocity), 'LineWidth', 0.5);
+% plot(EXP_1_4_Time, EXP_1_4_Speed, '-ok', 'LineWidth', 0.5);
 
 xlabel('Time, s', 'FontSize', 12, 'Color','k'); 
 ylabel('Velocity, mm/s', 'FontSize', 12, 'Color','k');
-legend('F_L_o_a_d = 0 N', 'F_L_o_a_d = 4909 N', 'F_L_o_a_d = 7854 N', 'F_L_o_a_d = 9817 N', 'FontSize', 12);
+lgd = legend('F_L_o_a_d = 0 N', 'F_L_o_a_d = 4000 N', 'F_L_o_a_d = 6000 N', 'F_L_o_a_d = 8000 N', 'FontSize', 10);
+lgd.BoxFace.ColorType = 'truecoloralpha';
+lgd.BoxFace.ColorData = uint8([255; 255; 255; 100]); 
 
 title('a');
-ylim([-30 30])
+ylim([-20 20])
+xlim([0 25])
 ax = gca;
 ax.YAxis(1).Color = 'k';
-xlim([0 25])
 grid on
 grid minor
 hold off 
@@ -152,22 +150,26 @@ hold off
 nexttile
 hold on 
 
-plot(A_Time1_2, A_Speed1_2_F, '-k', 'LineWidth', 0.5);
-plot(A_Time2_2, A_Speed2_2_F, '--k', 'LineWidth', 0.5);
-plot(A_Time3_2, A_Speed3_2_F, ':k', 'LineWidth', 0.5);
-% plot(A_Time4_2, A_Speed4_2_F, '-k', 'LineWidth', 0.5);
-MarkerInd = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200];
-plot(A_Time4_2, A_Speed4_2_F, '--ok', 'MarkerSize', 3, 'MarkerIndices',MarkerInd, 'LineWidth', 0.5); 
+plot(EXP_1_2_Time, EXP_1_2_Speed, '-r', 'LineWidth', 0.5);
+plot(EXP_2_2_Time, EXP_2_2_Speed, '-g', 'LineWidth', 0.5);
+plot(EXP_3_2_Time, EXP_3_2_Speed, '-b', 'LineWidth', 0.5);
+plot(EXP_4_2_Time, EXP_4_2_Speed, '-m', 'MarkerSize', 3, 'MarkerIndices',1:100:length(EXP_2_4_Velocity), 'LineWidth', 0.5);
+% plot(EXP_2_4_Time, EXP_2_4_Speed, '-ok', 'LineWidth', 0.5);
+
+
+
 
 xlabel('Time, s', 'FontSize', 12, 'Color','k'); 
 ylabel('Velocity, mm/s', 'FontSize', 12, 'Color','k');
-legend('F_L_o_a_d = 0 N', 'F_L_o_a_d = 4909 N', 'F_L_o_a_d = 7854 N', 'F_L_o_a_d = 9817 N', 'FontSize', 12);
+lgd = legend('F_L_o_a_d = 0 N', 'F_L_o_a_d = 4000 N', 'F_L_o_a_d = 6000 N', 'F_L_o_a_d = 8000 N', 'FontSize', 10);
+lgd.BoxFace.ColorType = 'truecoloralpha';
+lgd.BoxFace.ColorData = uint8([255; 255; 255; 100]); 
 
 title('b');
-ylim([-30 30])
+ylim([-20 20])
+xlim([0 25])
 ax = gca;
 ax.YAxis(1).Color = 'k';
-xlim([0 25])
 grid on
 grid minor
 hold off 
@@ -176,20 +178,21 @@ hold off
 nexttile
 hold on 
 
-plot(A_Time1_3, A_Speed1_3_F, '-k', 'LineWidth', 0.5);
-plot(A_Time2_3, A_Speed2_3_F, '--k', 'LineWidth', 0.5);
-plot(A_Time3_3, A_Speed3_3_F, ':k', 'LineWidth', 0.5);
-% plot(A_Time4_3, A_Speed4_3_F, '-k', 'LineWidth', 0.5);
-MarkerInd = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200];
-plot(A_Time4_3, A_Speed4_3_F, '--ok', 'MarkerSize', 3, 'MarkerIndices',MarkerInd, 'LineWidth', 0.5); 
+plot(EXP_1_3_Time, EXP_1_3_Speed, '-r', 'LineWidth', 0.5);
+plot(EXP_2_3_Time, EXP_2_3_Speed, '-g', 'LineWidth', 0.5);
+plot(EXP_3_3_Time, EXP_3_3_Speed, '-b', 'LineWidth', 0.5);
+plot(EXP_4_3_Time, EXP_4_3_Speed, '-m', 'MarkerSize', 3, 'MarkerIndices',1:100:length(EXP_3_4_Velocity), 'LineWidth', 0.5);
+% plot(EXP_3_4_Time, EXP_3_4_Speed, '-ok', 'LineWidth', 0.5);
 
 
 xlabel('Time, s', 'FontSize', 12, 'Color','k'); 
 ylabel('Velocity, mm/s', 'FontSize', 12, 'Color','k');
-legend('F_L_o_a_d = 0 N', 'F_L_o_a_d = 4909 N', 'F_L_o_a_d = 7854 N', 'F_L_o_a_d = 9817 N', 'FontSize', 12);
+lgd = legend('F_L_o_a_d = 0 N', 'F_L_o_a_d = 4000 N', 'F_L_o_a_d = 6000 N', 'F_L_o_a_d = 8000 N', 'FontSize', 10);
+lgd.BoxFace.ColorType = 'truecoloralpha';
+lgd.BoxFace.ColorData = uint8([255; 255; 255; 100]); 
 
 title('c');
-ylim([-30 30])
+ylim([-20 20])
 ax = gca;
 ax.YAxis(1).Color = 'k';
 xlim([0 25])
@@ -201,121 +204,29 @@ hold off
 nexttile
 hold on 
 
-plot(A_Time1_4, A_Speed1_4_F, '-k', 'LineWidth', 0.5);
-plot(A_Time2_4, A_Speed2_4_F, '--k', 'LineWidth', 0.5);
-plot(A_Time3_4, A_Speed3_4_F, ':k', 'LineWidth', 0.5);
-% plot(A_Time4_4, A_Speed4_4_F, '--ok', 'LineWidth', 0.5);
-MarkerInd = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200];
-plot(A_Time4_4, A_Speed4_4_F, '--ok', 'MarkerSize', 3, 'MarkerIndices',MarkerInd, 'LineWidth', 0.5); 
+
+
+plot(EXP_1_4_Time, EXP_1_4_Speed, '-r', 'LineWidth', 0.5);
+plot(EXP_2_4_Time, EXP_2_4_Speed, '-g', 'LineWidth', 0.5);
+plot(EXP_3_4_Time, EXP_3_4_Speed, '-b', 'LineWidth', 0.5);
+plot(EXP_4_4_Time, EXP_4_4_Speed, '-m', 'MarkerSize', 3, 'MarkerIndices',1:100:length(EXP_4_4_Velocity), 'LineWidth', 0.5);
+% plot(EXP_4_4_Time, EXP_4_4_Speed, '-ok', 'LineWidth', 0.5);
+
 
 xlabel('Time, s', 'FontSize', 12, 'Color','k'); 
 ylabel('Velocity, mm/s', 'FontSize', 12, 'Color','k');
-legend('F_L_o_a_d = 0 N', 'F_L_o_a_d = 4909 N', 'F_L_o_a_d = 7854 N', 'F_L_o_a_d = 9817 N', 'FontSize', 12);
+lgd = legend('F_L_o_a_d = 0 N', 'F_L_o_a_d = 4000 N', 'F_L_o_a_d = 6000 N', 'F_L_o_a_d = 8000 N', 'FontSize', 10);
+lgd.BoxFace.ColorType = 'truecoloralpha';
+lgd.BoxFace.ColorData = uint8([255; 255; 255; 100]); 
 
 title('d');
-ylim([-30 30])
+ylim([-20 20])
+xlim([0 25])
 ax = gca;
 ax.YAxis(1).Color = 'k';
-xlim([0 25])
 grid on
 grid minor
 hold off 
 
-
-
-%exportgraphics(t,'BW_ENG_NEW/analiz_speed.jpg','Resolution',300)
 set(gcf, 'Color', 'w')
-export_fig BW_ENG_NEW/analiz_speed.png -painters -m3
-
-
-
-
-
-% t = tiledlayout(2,2);
-% t.TileSpacing = 'compact';
-% 
-% nexttile
-% hold on 
-% plot(A_Time1_1, A_Speed1_1, '-k', 'LineWidth', 0.5);
-% plot(A_Time2_1, A_Speed2_1, '-g', 'LineWidth', 0.5);
-% plot(A_Time3_1, A_Speed3_1, '-b', 'LineWidth', 0.5);
-% plot(A_Time4_1, A_Speed4_1, '-k', 'LineWidth', 0.5);
-% 
-% xlabel('Time, s', 'FontSize', 12, 'Color','k'); 
-% ylabel('Velocity, mm/s', 'FontSize', 12, 'Color','k');
-% legend('F_L_o_a_d = 0 N', 'F_L_o_a_d = 1562 N', 'F_L_o_a_d = 2500 N', 'F_L_o_a_d = 3125 N');
-% 
-% title('a');
-% ylim([-30 30])
-ax = gca;
-ax.YAxis(1).Color = 'k';
-% xlim([0 25])
-% grid on
-% grid minor
-% hold off 
-% 
-% 
-% nexttile
-% hold on 
-% 
-% plot(A_Time1_2, A_Speed1_2, '-k', 'LineWidth', 0.5);
-% plot(A_Time2_2, A_Speed2_2, '-g', 'LineWidth', 0.5);
-% plot(A_Time3_2, A_Speed3_2, '-b', 'LineWidth', 0.5);
-% plot(A_Time4_2, A_Speed4_2, '-k', 'LineWidth', 0.5);
-% 
-% xlabel('Time, s', 'FontSize', 12, 'Color','k'); 
-% ylabel('Velocity, mm/s', 'FontSize', 12, 'Color','k');
-% legend('F_L_o_a_d = 0 N', 'F_L_o_a_d = 1562 N', 'F_L_o_a_d = 2500 N', 'F_L_o_a_d = 3125 N');
-% 
-% title('b');
-% ylim([-30 30])
-ax = gca;
-ax.YAxis(1).Color = 'k';
-% xlim([0 25])
-% grid on
-% grid minor
-% hold off 
-% 
-% 
-% nexttile
-% hold on 
-% 
-% plot(A_Time1_3, A_Speed1_3, '-k', 'LineWidth', 0.5);
-% plot(A_Time2_3, A_Speed2_3, '-g', 'LineWidth', 0.5);
-% plot(A_Time3_3, A_Speed3_3, '-b', 'LineWidth', 0.5);
-% plot(A_Time4_3, A_Speed4_3, '-k', 'LineWidth', 0.5);
-% 
-% xlabel('Time, s', 'FontSize', 12, 'Color','k'); 
-% ylabel('Velocity, mm/s', 'FontSize', 12, 'Color','k');
-% legend('F_L_o_a_d = 0 N', 'F_L_o_a_d = 1562 N', 'F_L_o_a_d = 2500 N', 'F_L_o_a_d = 3125 N');
-% 
-% title('c');
-% ylim([-30 30])
-ax = gca;
-ax.YAxis(1).Color = 'k';
-% xlim([0 25])
-% grid on
-% grid minor
-% hold off 
-% 
-% 
-% nexttile
-% hold on 
-% 
-% plot(A_Time1_4, A_Speed1_4, '-k', 'LineWidth', 0.5);
-% plot(A_Time2_4, A_Speed2_4, '-g', 'LineWidth', 0.5);
-% plot(A_Time3_4, A_Speed3_4, '-b', 'LineWidth', 0.5);
-% plot(A_Time4_4, A_Speed4_4, '-k', 'LineWidth', 0.5);
-% 
-% xlabel('Time, s', 'FontSize', 12, 'Color','k'); 
-% ylabel('Velocity, mm/s', 'FontSize', 12, 'Color','k');
-% legend('F_L_o_a_d = 0 N', 'F_L_o_a_d = 1562 N', 'F_L_o_a_d = 2500 N', 'F_L_o_a_d = 3125 N');
-% 
-% title('d');
-% ylim([-30 30])
-ax = gca;
-ax.YAxis(1).Color = 'k';
-% xlim([0 25])
-% grid on
-% grid minor
-% hold off 
+export_fig ../FIGURE/analiz_speed.png -painters -m3

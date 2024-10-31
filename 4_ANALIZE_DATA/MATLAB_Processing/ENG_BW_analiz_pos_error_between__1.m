@@ -1,284 +1,263 @@
 clc;
 clear all;
 
-A_filename = 'M_eksp_1_1.csv';
-A1_1 = dlmread(A_filename, ';', 1, 0);
-A_filename = 'M_eksp_1_2.csv';
-A1_2 = dlmread(A_filename, ';', 1, 0);
-A_filename = 'M_eksp_1_3.csv';
-A1_3 = dlmread(A_filename, ';', 1, 0);
-A_filename = 'M_eksp_1_4.csv';
-A1_4 = dlmread(A_filename, ';', 1, 0);
+clc;
+clear all;
 
-A_filename = 'M_eksp_2_1.csv';
-A2_1 = dlmread(A_filename, ';', 1, 0);
-A_filename = 'M_eksp_2_2.csv';
-A2_2 = dlmread(A_filename, ';', 1, 0);
-A_filename = 'M_eksp_2_3.csv';
-A2_3 = dlmread(A_filename, ';', 1, 0);
-A_filename = 'M_eksp_2_4.csv';
-A2_4 = dlmread(A_filename, ';', 1, 0);
+path_data_exp = '../DATA_Experiment_Processed/';
+% path_data_exp = "../DATA_Experiment/";
+path_data_sim = "../DATA_Simulation/";
 
+filename = path_data_exp + "exp_data_1_1.csv";
+exp_data_1_1 = dlmread(filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_1_2.csv";
+exp_data_1_2 = dlmread(filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_1_3.csv";
+exp_data_1_3 = dlmread(filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_1_4.csv";
+exp_data_1_4 = dlmread(filename, ';', 1, 0);
 
-A_filename = 'M_eksp_3_1.csv';
-A3_1 = dlmread(A_filename, ';', 1, 0);
-A_filename = 'M_eksp_3_2.csv';
-A3_2 = dlmread(A_filename, ';', 1, 0);
-A_filename = 'M_eksp_3_3.csv';
-A3_3 = dlmread(A_filename, ';', 1, 0);
-A_filename = 'M_eksp_3_4.csv';
-A3_4 = dlmread(A_filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_2_1.csv";
+exp_data_2_1 = dlmread(filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_2_2.csv";
+exp_data_2_2 = dlmread(filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_2_3.csv";
+exp_data_2_3 = dlmread(filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_2_4.csv";
+exp_data_2_4 = dlmread(filename, ';', 1, 0);
 
+filename = path_data_exp + "exp_data_3_1.csv";
+exp_data_3_1 = dlmread(filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_3_2.csv";
+exp_data_3_2 = dlmread(filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_3_3.csv";
+exp_data_3_3 = dlmread(filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_3_4.csv";
+exp_data_3_4 = dlmread(filename, ';', 1, 0);
 
-A_filename = 'M_eksp_4_1.csv';
-A4_1 = dlmread(A_filename, ';', 1, 0);
-A_filename = 'M_eksp_4_2.csv';
-A4_2 = dlmread(A_filename, ';', 1, 0);
-A_filename = 'M_eksp_4_3.csv';
-A4_3 = dlmread(A_filename, ';', 1, 0);
-A_filename = 'M_eksp_4_4.csv';
-A4_4 = dlmread(A_filename, ';', 1, 0);
-
-%pos % % % % % % % % % % % % % % % % % % % % % 
-
-load('pos_1_1.mat', 'pos');
-C1_1 = pos;
-load('pos_1_2.mat', 'pos');
-C1_2 = pos;
-load('pos_1_3.mat', 'pos');
-C1_3 = pos;
-load('pos_1_4.mat', 'pos');
-C1_4 = pos;
-
-load('pos_2_1.mat', 'pos');
-C2_1 = pos;
-load('pos_2_2.mat', 'pos');
-C2_2 = pos;
-load('pos_2_3.mat', 'pos');
-C2_3 = pos;
-load('pos_2_4.mat', 'pos');
-C2_4 = pos;
-
-load('pos_3_1.mat', 'pos');
-C3_1 = pos;
-load('pos_3_2.mat', 'pos');
-C3_2 = pos;
-load('pos_3_3.mat', 'pos');
-C3_3 = pos;
-load('pos_3_4.mat', 'pos');
-C3_4 = pos;
-
-load('pos_4_1.mat', 'pos');
-C4_1 = pos;
-load('pos_4_2.mat', 'pos');
-C4_2 = pos;
-load('pos_4_3.mat', 'pos');
-C4_3 = pos;
-load('pos_4_4.mat', 'pos');
-C4_4 = pos;
+filename = path_data_exp + "exp_data_4_1.csv";
+exp_data_4_1 = dlmread(filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_4_2.csv";
+exp_data_4_2 = dlmread(filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_4_3.csv";
+exp_data_4_3 = dlmread(filename, ';', 1, 0);
+filename = path_data_exp + "exp_data_4_4.csv";
+exp_data_4_4 = dlmread(filename, ';', 1, 0);
 
 
-C_Time1_1 = C1_1(1,:)*1000 + 30; % A_1_1
-C_Time1_2 = C1_2(1,:)*1000 + 80; % A_1_2
-C_Time1_3 = C1_3(1,:)*1000 + 66; % A_1_3
-C_Time1_4 = C1_4(1,:)*1000 ; % A_1_4
+EXP_1_1_Time          = exp_data_1_1(:,1)-1.583;
+EXP_1_1_PosRef        = exp_data_1_1(:,2);
+EXP_1_1_PosFb         = exp_data_1_1(:,3);
 
-C_Time2_1 = C2_1(1,:)*1000 +35; % A_2_1
-C_Time2_2 = C2_2(1,:)*1000 +60; % A_2_2
-C_Time2_3 = C2_3(1,:)*1000 +40; % A_2_3
-C_Time2_4 = C2_4(1,:)*1000 +88; % A_2_4
+EXP_1_2_Time          = exp_data_1_2(:,1)-0.529;
+EXP_1_2_PosRef        = exp_data_1_2(:,2);
+EXP_1_2_PosFb         = exp_data_1_2(:,3);
 
+EXP_1_3_Time          = exp_data_1_3(:,1)-1.599;
+EXP_1_3_PosRef        = exp_data_1_3(:,2);
+EXP_1_3_PosFb         = exp_data_1_3(:,3);
 
-C_Time3_1 = C3_1(1,:)*1000 + 90; % A_3_1
-C_Time3_2 = C3_2(1,:)*1000 + 30; % A_3_2
-C_Time3_3 = C3_3(1,:)*1000 + 80; % A_3_3
-C_Time3_4 = C3_4(1,:)*1000 + 40; % A_3_4
-
-
-C_Time4_1 = C4_1(1,:)*1000 + 60; % A_4_1
-C_Time4_2 = C4_2(1,:)*1000 + 27; % A_4_2
-C_Time4_3 = C4_3(1,:)*1000 + 40; % A_4_3
-C_Time4_4 = C4_4(1,:)*1000 + 20; % A_4_4
+EXP_1_4_Time          = exp_data_1_4(:,1)-1.566;
+EXP_1_4_PosRef        = exp_data_1_4(:,2);
+EXP_1_4_PosFb         = exp_data_1_4(:,3);
 
 
-C_Time1_1 = C_Time1_1 / 1000;
-C_Time1_2 = C_Time1_2 / 1000;
-C_Time1_3 = C_Time1_3 / 1000;
-C_Time1_4 = C_Time1_4 / 1000;
+EXP_2_1_Time          = exp_data_2_1(:,1)-1.578;
+EXP_2_1_PosRef        = exp_data_2_1(:,2);
+EXP_2_1_PosFb         = exp_data_2_1(:,3);
 
-C_Time2_1 = C_Time2_1 / 1000;
-C_Time2_2 = C_Time2_2 / 1000;
-C_Time2_3 = C_Time2_3 / 1000;
-C_Time2_4 = C_Time2_4 / 1000;
+EXP_2_2_Time          = exp_data_2_2(:,1)-1.528;
+EXP_2_2_PosRef        = exp_data_2_2(:,2);
+EXP_2_2_PosFb         = exp_data_2_2(:,3);
 
-C_Time3_1 = C_Time3_1 / 1000;
-C_Time3_2 = C_Time3_2 / 1000;
-C_Time3_3 = C_Time3_3 / 1000;
-C_Time3_4 = C_Time3_4 / 1000;
+EXP_2_3_Time          = exp_data_2_3(:,1)-1.521;
+EXP_2_3_PosRef        = exp_data_2_3(:,2);
+EXP_2_3_PosFb         = exp_data_2_3(:,3);
 
-C_Time4_1 = C_Time4_1 / 1000;
-C_Time4_2 = C_Time4_2 / 1000;
-C_Time4_3 = C_Time4_3 / 1000;
-C_Time4_4 = C_Time4_4 / 1000;
-
-C_PosRef1_1 = C1_1(3,:); 
-C_PosFb1_1 = C1_1(2,:); 
-C_PosErr1_1 = C_PosRef1_1 - C_PosFb1_1;
-% C_PosErr_exp_sim1_1 = 
-C_PosRef1_2 = C1_2(3,:); 
-C_PosFb1_2 = C1_2(2,:); 
-C_PosErr1_2 = C_PosRef1_2 - C_PosFb1_2;
-C_PosRef1_3 = C1_3(3,:); 
-C_PosFb1_3 = C1_3(2,:); 
-C_PosErr1_3 = C_PosRef1_3 - C_PosFb1_3;
-C_PosRef1_4 = C1_4(3,:); 
-C_PosFb1_4 = C1_4(2,:); 
-C_PosErr1_4 = C_PosRef1_4 - C_PosFb1_4;
-
-C_PosRef2_1 = C2_1(3,:); 
-C_PosFb2_1 = C2_1(2,:); 
-C_PosErr2_1 = C_PosRef2_1 - C_PosFb2_1;
-C_PosRef2_2 = C2_2(3,:); 
-C_PosFb2_2 = C2_2(2,:); 
-C_PosErr2_2 = C_PosRef2_2 - C_PosFb2_2;
-C_PosRef2_3 = C2_3(3,:); 
-C_PosFb2_3 = C2_3(2,:); 
-C_PosErr2_3 = C_PosRef2_3 - C_PosFb2_3;
-C_PosRef2_4 = C2_4(3,:); 
-C_PosFb2_4 = C2_4(2,:); 
-C_PosErr2_4 = C_PosRef2_4 - C_PosFb2_4;
-
-C_PosRef3_1 = C3_1(3,:); 
-C_PosFb3_1 = C3_1(2,:); 
-C_PosErr3_1 = C_PosRef3_1 - C_PosFb3_1;
-% C_PosErr_exp_sim3_1 = 
-C_PosRef3_2 = C3_2(3,:); 
-C_PosFb3_2 = C3_2(2,:); 
-C_PosErr3_2 = C_PosRef3_2 - C_PosFb3_2;
-C_PosRef3_3 = C3_3(3,:); 
-C_PosFb3_3 = C3_3(2,:); 
-C_PosErr3_3 = C_PosRef3_3 - C_PosFb3_3;
-C_PosRef3_4 = C3_4(3,:); 
-C_PosFb3_4 = C3_4(2,:); 
-C_PosErr3_4 = C_PosRef3_4 - C_PosFb3_4;
+EXP_2_4_Time          = exp_data_2_4(:,1)-1.586;
+EXP_2_4_PosRef        = exp_data_2_4(:,2);
+EXP_2_4_PosFb         = exp_data_2_4(:,3);
 
 
-C_PosRef4_1 = C4_1(3,:); 
-C_PosFb4_1 = C4_1(2,:); 
-C_PosErr4_1 = C_PosRef4_1 - C_PosFb4_1;
-% C_PosErr_exp_sim4_1 = 
-C_PosRef4_2 = C4_2(3,:); 
-C_PosFb4_2 = C4_2(2,:); 
-C_PosErr4_2 = C_PosRef4_2 - C_PosFb4_2;
-C_PosRef4_3 = C4_3(3,:); 
-C_PosFb4_3 = C4_3(2,:); 
-C_PosErr4_3 = C_PosRef4_3 - C_PosFb4_3;
-C_PosRef4_4 = C4_4(3,:); 
-C_PosFb4_4 = C4_4(2,:); 
-C_PosErr4_4 = C_PosRef4_4 - C_PosFb4_4;
+EXP_3_1_Time          = exp_data_3_1(:,1)-1.550;
+EXP_3_1_PosRef        = exp_data_3_1(:,2);
+EXP_3_1_PosFb         = exp_data_3_1(:,3);
+
+EXP_3_2_Time          = exp_data_3_2(:,1)-1.507;
+EXP_3_2_PosRef        = exp_data_3_2(:,2);
+EXP_3_2_PosFb         = exp_data_3_2(:,3);
+
+EXP_3_3_Time          = exp_data_3_3(:,1)-1.558;
+EXP_3_3_PosRef        = exp_data_3_3(:,2);
+EXP_3_3_PosFb         = exp_data_3_3(:,3);
+
+EXP_3_4_Time          = exp_data_3_4(:,1)-1.545;
+EXP_3_4_PosRef        = exp_data_3_4(:,2);
+EXP_3_4_PosFb         = exp_data_3_4(:,3);
 
 
+EXP_4_1_Time          = exp_data_4_1(:,1)-1.584;
+EXP_4_1_PosRef        = exp_data_4_1(:,2);
+EXP_4_1_PosFb         = exp_data_4_1(:,3);
 
-A_Time1_1 = A1_1(:,1)*0.01;
-A_PosRef1_1 = A1_1(:,2)*0.025 * -1;
-A_PosFb1_1 = A1_1(:,3)*0.025 * -1;
-A_Vel1_1 = A1_1(:,5)* -1 * 4.88; %RPM
-A_PosErr1_1 = A_PosRef1_1 - A_PosFb1_1;
+EXP_4_2_Time          = exp_data_4_2(:,1)-1.515;
+EXP_4_2_PosRef        = exp_data_4_2(:,2);
+EXP_4_2_PosFb         = exp_data_4_2(:,3);
 
-A_Time1_2 = A1_2(:,1)*0.01;
-A_PosRef1_2 = A1_2(:,2)*0.025 * -1;
-A_PosFb1_2 = A1_2(:,3)*0.025 * -1;
-A_Vel1_2 = A1_2(:,5)* -1 * 4.88; %RPM
-A_PosErr1_2 = A_PosRef1_2 - A_PosFb1_2;
+EXP_4_3_Time          = exp_data_4_3(:,1)-1.615;
+EXP_4_3_PosRef        = exp_data_4_3(:,2);
+EXP_4_3_PosFb         = exp_data_4_3(:,3);
 
-A_Time1_3 = A1_3(:,1)*0.01;
-A_PosRef1_3 = A1_3(:,2)*0.025 * -1;
-A_PosFb1_3 = A1_3(:,3)*0.025 * -1;
-A_Vel1_3 = A1_3(:,5)* -1 * 4.88; %RPM
-A_PosErr1_3 = A_PosRef1_3 - A_PosFb1_3;
+EXP_4_4_Time          = exp_data_4_4(:,1)-1.568;
+EXP_4_4_PosRef        = exp_data_4_4(:,2);
+EXP_4_4_PosFb         = exp_data_4_4(:,3);
 
-A_Time1_4 = A1_4(:,1)*0.01;
-A_PosRef1_4 = A1_4(:,2)*0.025 * -1;
-A_PosFb1_4 = A1_4(:,3)*0.025 * -1;
-A_Vel1_4 = A1_4(:,5)* -1 * 4.88; %RPM
-A_PosErr1_4 = A_PosRef1_4 - A_PosFb1_4;
 
-A_Time2_1 = A2_1(:,1)*0.01;
-A_PosRef2_1 = A2_1(:,2)*0.025 * -1;
-A_PosFb2_1 = A2_1(:,3)*0.025 * -1;
-A_Vel2_1 = A2_1(:,5)* -1 * 4.88; %RPM
-A_PosErr2_1 = A_PosRef2_1 - A_PosFb2_1;
+load(path_data_sim + 'sim_data_1_1.mat', 'data');
+sim_data_1_1 = data;
+load(path_data_sim + 'sim_data_1_2.mat', 'data');
+sim_data_1_2 = data;
+load(path_data_sim + 'sim_data_1_3.mat', 'data');
+sim_data_1_3 = data;
+load(path_data_sim + 'sim_data_1_4.mat', 'data');
+sim_data_1_4 = data;
 
-A_Time2_2 = A2_2(:,1)*0.01;
-A_PosRef2_2 = A2_2(:,2)*0.025 * -1;
-A_PosFb2_2 = A2_2(:,3)*0.025 * -1;
-A_Vel2_2 = A2_2(:,5)* -1 * 4.88; %RPM
-A_PosErr2_2 = A_PosRef2_2 - A_PosFb2_2;
+load(path_data_sim + 'sim_data_2_1.mat', 'data');
+sim_data_2_1 = data;
+load(path_data_sim + 'sim_data_2_2.mat', 'data');
+sim_data_2_2 = data;
+load(path_data_sim + 'sim_data_2_3.mat', 'data');
+sim_data_2_3 = data;
+load(path_data_sim + 'sim_data_2_4.mat', 'data');
+sim_data_2_4 = data;
 
-A_Time2_3 = A2_3(:,1)*0.01;
-A_PosRef2_3 = A2_3(:,2)*0.025 * -1;
-A_PosFb2_3 = A2_3(:,3)*0.025 * -1;
-A_Vel2_3 = A2_3(:,5)* -1 * 4.88; %RPM
-A_PosErr2_3 = A_PosRef2_3 - A_PosFb2_3;
+load(path_data_sim + 'sim_data_3_1.mat', 'data');
+sim_data_3_1 = data;
+load(path_data_sim + 'sim_data_3_2.mat', 'data');
+sim_data_3_2 = data;
+load(path_data_sim + 'sim_data_3_3.mat', 'data');
+sim_data_3_3 = data;
+load(path_data_sim + 'sim_data_3_4.mat', 'data');
+sim_data_3_4 = data;
 
-A_Time2_4 = A2_4(:,1)*0.01;
-A_PosRef2_4 = A2_4(:,2)*0.025 * -1;
-A_PosFb2_4 = A2_4(:,3)*0.025 * -1;
-A_Vel2_4 = A2_4(:,5)* -1 * 4.88; %RPM
-A_PosErr2_4 = A_PosRef2_4 - A_PosFb2_4;
+load(path_data_sim + 'sim_data_4_1.mat', 'data');
+sim_data_4_1 = data;
+load(path_data_sim + 'sim_data_4_2.mat', 'data');
+sim_data_4_2 = data;
+load(path_data_sim + 'sim_data_4_3.mat', 'data');
+sim_data_4_3 = data;
+load(path_data_sim + 'sim_data_4_4.mat', 'data');
+sim_data_4_4 = data;
 
-A_Time3_1 = A3_1(:,1)*0.01;
-A_PosRef3_1 = A3_1(:,2)*0.025 * -1;
-A_PosFb3_1 = A3_1(:,3)*0.025 * -1;
-A_Vel3_1 = A3_1(:,5)* -1 * 4.88; %RPM
-A_PosErr3_1 = A_PosRef3_1 - A_PosFb3_1;
 
-A_Time3_2 = A3_2(:,1)*0.01;
-A_PosRef3_2 = A3_2(:,2)*0.025 * -1;
-A_PosFb3_2 = A3_2(:,3)*0.025 * -1;
-A_Vel3_2 = A3_2(:,5)* -1 * 4.88; %RPM
-A_PosErr3_2 = A_PosRef3_2 - A_PosFb3_2;
+SIM_1_1_Time          = sim_data_1_1(1,:) - 1.6;
+SIM_1_1_PosRef        = sim_data_1_1(2,:) * 1000;
+SIM_1_1_PosFb         = sim_data_1_1(3,:) * 1000;
 
-A_Time3_3 = A3_3(:,1)*0.01;
-A_PosRef3_3 = A3_3(:,2)*0.025 * -1;
-A_PosFb3_3 = A3_3(:,3)*0.025 * -1;
-A_Vel3_3 = A3_3(:,5)* -1 * 4.88; %RPM
-A_PosErr3_3 = A_PosRef3_3 - A_PosFb3_3;
+SIM_1_2_Time          = sim_data_1_2(1,:) - 1.6;
+SIM_1_2_PosRef        = sim_data_1_2(2,:) * 1000;
+SIM_1_2_PosFb         = sim_data_1_2(3,:) * 1000;
 
-A_Time3_4 = A3_4(:,1)*0.01;
-A_PosRef3_4 = A3_4(:,2)*0.025 * -1;
-A_PosFb3_4 = A3_4(:,3)*0.025 * -1;
-A_Vel3_4 = A3_4(:,5)* -1 * 4.88; %RPM
-A_PosErr3_4 = A_PosRef3_4 - A_PosFb3_4;
+SIM_1_3_Time          = sim_data_1_3(1,:) - 1.6;
+SIM_1_3_PosRef        = sim_data_1_3(2,:) * 1000;
+SIM_1_3_PosFb         = sim_data_1_3(3,:) * 1000;
+
+SIM_1_4_Time          = sim_data_1_4(1,:) - 1.6;
+SIM_1_4_PosRef        = sim_data_1_4(2,:) * 1000;
+SIM_1_4_PosFb         = sim_data_1_4(3,:) * 1000;
+
+
+SIM_2_1_Time          = sim_data_2_1(1,:) - 1.6;
+SIM_2_1_PosRef        = sim_data_2_1(2,:) * 1000;
+SIM_2_1_PosFb         = sim_data_2_1(3,:) * 1000;
+
+SIM_2_2_Time          = sim_data_2_2(1,:) - 1.6;
+SIM_2_2_PosRef        = sim_data_2_2(2,:) * 1000;
+SIM_2_2_PosFb         = sim_data_2_2(3,:) * 1000;
+
+SIM_2_3_Time          = sim_data_2_3(1,:) - 1.6;
+SIM_2_3_PosRef        = sim_data_2_3(2,:) * 1000;
+SIM_2_3_PosFb         = sim_data_2_3(3,:) * 1000;
+
+SIM_2_4_Time          = sim_data_2_4(1,:) - 1.6;
+SIM_2_4_PosRef        = sim_data_2_4(2,:) * 1000;
+SIM_2_4_PosFb         = sim_data_2_4(3,:) * 1000;
+
+
+SIM_3_1_Time          = sim_data_3_1(1,:) - 1.6;
+SIM_3_1_PosRef        = sim_data_3_1(2,:) * 1000;
+SIM_3_1_PosFb         = sim_data_3_1(3,:) * 1000;
+
+SIM_3_2_Time          = sim_data_3_2(1,:) - 1.6;
+SIM_3_2_PosRef        = sim_data_3_2(2,:) * 1000;
+SIM_3_2_PosFb         = sim_data_3_2(3,:) * 1000;
+
+SIM_3_3_Time          = sim_data_3_3(1,:) - 1.6;
+SIM_3_3_PosRef        = sim_data_3_3(2,:) * 1000;
+SIM_3_3_PosFb         = sim_data_3_3(3,:) * 1000;
+
+SIM_3_4_Time          = sim_data_3_4(1,:) - 1.6;
+SIM_3_4_PosRef        = sim_data_3_4(2,:) * 1000;
+SIM_3_4_PosFb         = sim_data_3_4(3,:) * 1000;
+
+SIM_4_1_Time          = sim_data_4_1(1,:) - 1.6;
+SIM_4_1_PosRef        = sim_data_4_1(2,:) * 1000;
+SIM_4_1_PosFb         = sim_data_4_1(3,:) * 1000;
+
+SIM_4_2_Time          = sim_data_4_2(1,:) - 1.6;
+SIM_4_2_PosRef        = sim_data_4_2(2,:) * 1000;
+SIM_4_2_PosFb         = sim_data_4_2(3,:) * 1000;
+
+SIM_4_3_Time          = sim_data_4_3(1,:) - 1.6;
+SIM_4_3_PosRef        = sim_data_4_3(2,:) * 1000;
+SIM_4_3_PosFb         = sim_data_4_3(3,:) * 1000;
+
+SIM_4_4_Time          = sim_data_4_4(1,:) - 1.6;
+SIM_4_4_PosRef        = sim_data_4_4(2,:) * 1000;
+SIM_4_4_PosFb         = sim_data_4_4(3,:) * 1000;
 
 
 
+EXP_1_1_PosFb_NEW        = interp1(EXP_1_1_Time, EXP_1_1_PosFb, SIM_1_1_Time);
+EXP_1_2_PosFb_NEW        = interp1(EXP_1_2_Time, EXP_1_2_PosFb, SIM_1_2_Time);
+EXP_1_3_PosFb_NEW        = interp1(EXP_1_3_Time, EXP_1_3_PosFb, SIM_1_3_Time);
+EXP_1_4_PosFb_NEW        = interp1(EXP_1_4_Time, EXP_1_4_PosFb, SIM_1_4_Time);
+
+EXP_2_1_PosFb_NEW        = interp1(EXP_2_1_Time, EXP_2_1_PosFb, SIM_2_1_Time);
+EXP_2_2_PosFb_NEW        = interp1(EXP_2_2_Time, EXP_2_2_PosFb, SIM_2_2_Time);
+EXP_2_3_PosFb_NEW        = interp1(EXP_2_3_Time, EXP_2_3_PosFb, SIM_2_3_Time);
+EXP_2_4_PosFb_NEW        = interp1(EXP_2_4_Time, EXP_2_4_PosFb, SIM_2_4_Time);
+
+EXP_3_1_PosFb_NEW        = interp1(EXP_3_1_Time, EXP_3_1_PosFb, SIM_3_1_Time);
+EXP_3_2_PosFb_NEW        = interp1(EXP_3_2_Time, EXP_3_2_PosFb, SIM_3_2_Time);
+EXP_3_3_PosFb_NEW        = interp1(EXP_3_3_Time, EXP_3_3_PosFb, SIM_3_3_Time);
+EXP_3_4_PosFb_NEW        = interp1(EXP_3_4_Time, EXP_3_4_PosFb, SIM_3_4_Time);
+
+EXP_4_1_PosFb_NEW        = interp1(EXP_4_1_Time, EXP_4_1_PosFb, SIM_4_1_Time);
+EXP_4_2_PosFb_NEW        = interp1(EXP_4_2_Time, EXP_4_2_PosFb, SIM_4_2_Time);
+EXP_4_3_PosFb_NEW        = interp1(EXP_4_3_Time, EXP_4_3_PosFb, SIM_4_3_Time);
+EXP_4_4_PosFb_NEW        = interp1(EXP_4_4_Time, EXP_4_4_PosFb, SIM_4_4_Time);
 
 
-A_Time4_1 = A4_1(:,1)*0.01;
-A_PosRef4_1 = A4_1(:,2)*0.025 * -1;
-A_PosFb4_1 = A4_1(:,3)*0.025 * -1;
-A_Vel4_1 = A4_1(:,5)* -1 * 4.88; %RPM
-A_PosErr4_1 = A_PosRef4_1 - A_PosFb4_1;
+EXP_1_1_PosFb_between    = SIM_1_1_PosFb - EXP_1_1_PosFb_NEW;
+EXP_1_2_PosFb_between    = SIM_1_2_PosFb - EXP_1_2_PosFb_NEW;
+EXP_1_3_PosFb_between    = SIM_1_3_PosFb - EXP_1_3_PosFb_NEW;
+EXP_1_4_PosFb_between    = SIM_1_4_PosFb - EXP_1_4_PosFb_NEW;
 
-A_Time4_2 = A4_2(:,1)*0.01;
-A_PosRef4_2 = A4_2(:,2)*0.025 * -1;
-A_PosFb4_2 = A4_2(:,3)*0.025 * -1;
-A_Vel4_2 = A4_2(:,5)* -1 * 4.88; %RPM
-A_PosErr4_2 = A_PosRef4_2 - A_PosFb4_2;
+EXP_2_1_PosFb_between    = SIM_2_1_PosFb - EXP_2_1_PosFb_NEW;
+EXP_2_2_PosFb_between    = SIM_2_2_PosFb - EXP_2_2_PosFb_NEW;
+EXP_2_3_PosFb_between    = SIM_2_3_PosFb - EXP_2_3_PosFb_NEW;
+EXP_2_4_PosFb_between    = SIM_2_4_PosFb - EXP_2_4_PosFb_NEW;
 
-A_Time4_3 = A4_3(:,1)*0.01;
-A_PosRef4_3 = A4_3(:,2)*0.025 * -1;
-A_PosFb4_3 = A4_3(:,3)*0.025 * -1;
-A_Vel4_3 = A4_3(:,5)* -1 * 4.88; %RPM
-A_PosErr4_3 = A_PosRef4_3 - A_PosFb4_3;
+EXP_3_1_PosFb_between    = SIM_3_1_PosFb - EXP_3_1_PosFb_NEW;
+EXP_3_2_PosFb_between    = SIM_3_2_PosFb - EXP_3_2_PosFb_NEW;
+EXP_3_3_PosFb_between    = SIM_3_3_PosFb - EXP_3_3_PosFb_NEW;
+EXP_3_4_PosFb_between    = SIM_3_4_PosFb - EXP_3_4_PosFb_NEW;
 
-A_Time4_4 = A4_4(:,1)*0.01;
-A_PosRef4_4 = A4_4(:,2)*0.025 * -1;
-A_PosFb4_4 = A4_4(:,3)*0.025 * -1;
-A_Vel4_4 = A4_4(:,5)* -1 * 4.88; %RPM
-A_PosErr4_4 = A_PosRef4_4 - A_PosFb4_4;
-
+EXP_4_1_PosFb_between    = SIM_4_1_PosFb - EXP_4_1_PosFb_NEW;
+EXP_4_2_PosFb_between    = SIM_4_2_PosFb - EXP_4_2_PosFb_NEW;
+EXP_4_3_PosFb_between    = SIM_4_3_PosFb - EXP_4_3_PosFb_NEW;
+EXP_4_4_PosFb_between    = SIM_4_4_PosFb - EXP_4_4_PosFb_NEW;
 
 
 t = tiledlayout(2,2);
@@ -286,32 +265,19 @@ t.TileSpacing = 'compact';
 
 nexttile
 hold on 
-A_PosErr1_1_NEW= interp1(A_Time1_1, A_PosErr1_1, C_Time1_1);
-A_PosErr1_1_between = A_PosErr1_1_NEW - C_PosErr1_1;
-plot(C_Time1_1, A_PosErr1_1_between, '-k', 'LineWidth', 0.5);
+plot(SIM_1_1_Time, EXP_1_1_PosFb_between,"-r", 'LineWidth', 0.5);
+plot(SIM_1_2_Time, EXP_1_2_PosFb_between,"-g", 'LineWidth', 0.5);
+plot(SIM_1_3_Time, EXP_1_3_PosFb_between,"-b", 'LineWidth', 0.5);
+plot(SIM_1_4_Time, EXP_1_4_PosFb_between,"-m", 'LineWidth', 0.5);
 
-A_PosErr2_1_NEW= interp1(A_Time2_1, A_PosErr2_1, C_Time2_1);
-A_PosErr2_1_between = A_PosErr2_1_NEW - C_PosErr2_1;
-plot(C_Time2_1, A_PosErr2_1_between, '--k', 'LineWidth', 0.5);
-
-A_PosErr3_1_NEW= interp1(A_Time3_1, A_PosErr3_1, C_Time3_1);
-A_PosErr3_1_between = A_PosErr3_1_NEW - C_PosErr3_1;
-plot(C_Time3_1, A_PosErr3_1_between, ':k', 'LineWidth', 0.5);
-
-A_PosErr4_1_NEW= interp1(A_Time4_1, A_PosErr4_1, C_Time4_1);
-A_PosErr4_1_between = A_PosErr4_1_NEW - C_PosErr4_1;
-MarkerInd = [1596, 1627, 1647, 1667, 2983, 3301, 3332, 3352, 4643, 4751, 4795, 4819, 5251, 5500, 6704, 6783, 6816, 6845, 6871, 6894, 6914, 6934, 6954, 6974, 6994, 7014, 7034, 7054, 7074, 7094]
-plot(C_Time4_1, A_PosErr4_1_between, '--ok', 'MarkerSize', 3, 'MarkerIndices',MarkerInd, 'LineWidth', 0.5); 
-
-
-1:100:length(A_PosErr4_1_between)
 
 xlabel('Time, s', 'FontSize', 12, 'Color','k'); 
 ylabel('Error, mm', 'FontSize', 12, 'Color','k');
-legend('F_L_o_a_d = 0 N', 'F_L_o_a_d = 4909 N', 'F_L_o_a_d = 7854 N', 'F_L_o_a_d = 9817 N', 'FontSize', 12);
-
+lgd = legend('F_L_o_a_d = 0 N', 'F_L_o_a_d = 4000 N', 'F_L_o_a_d = 6000 N', 'F_L_o_a_d = 8000 N', 'FontSize', 10);
+lgd.BoxFace.ColorType = 'truecoloralpha';
+lgd.BoxFace.ColorData = uint8([255; 255; 255; 100]); 
 title('a');
-ylim([-2 10]) 
+ylim([-2 3]) 
 ax = gca;
 ax.YAxis(1).Color = 'k';
 xlim([0 25])
@@ -322,33 +288,19 @@ hold off
 
 nexttile
 hold on 
-A_PosErr1_2_NEW= interp1(A_Time1_2, A_PosErr1_2, C_Time1_2);
-A_PosErr1_2_between = A_PosErr1_2_NEW - C_PosErr1_2;
-plot(C_Time1_2, A_PosErr1_2_between, '-k', 'LineWidth', 0.5);
+plot(SIM_2_1_Time, EXP_2_1_PosFb_between,"-r", 'LineWidth', 0.5);
+plot(SIM_2_2_Time, EXP_2_2_PosFb_between,"-g", 'LineWidth', 0.5);
+plot(SIM_2_3_Time, EXP_2_3_PosFb_between,"-b", 'LineWidth', 0.5);
+plot(SIM_2_4_Time, EXP_2_4_PosFb_between,"-m", 'LineWidth', 0.5);
 
-A_PosErr2_2_NEW= interp1(A_Time2_2, A_PosErr2_2, C_Time2_2);
-size(A_PosErr2_2_NEW)
-size(C_PosErr2_2)
-A_PosErr2_2_between = A_PosErr2_2_NEW - C_PosErr2_2;
-plot(C_Time2_2, A_PosErr2_2_between, '--k', 'LineWidth', 0.5);
-
-A_PosErr3_2_NEW= interp1(A_Time3_2, A_PosErr3_2, C_Time3_2);
-A_PosErr3_2_between = A_PosErr3_2_NEW - C_PosErr3_2;
-plot(C_Time3_2, A_PosErr3_2_between, ':k', 'LineWidth', 0.5);
-
-MarkerIndices = [1,2,3,4,5];
-
-A_PosErr4_2_NEW= interp1(A_Time4_2, A_PosErr4_2, C_Time4_2);
-A_PosErr4_2_between = A_PosErr4_2_NEW - C_PosErr4_2;
-MarkerInd = [1596, 1627, 1647, 1667, 2961, 3436, 3489, 3509, 3535, 4945, 5029, 5071, 5098, 5531, 5825, 7097, 7192, 7240, 7270, 7293, 7313, 7333, 7353, 7373, 7393, 7413, 7433, 7453, 7473, 7493]
-plot(C_Time4_2, A_PosErr4_2_between, '--ok', 'MarkerSize', 3, 'MarkerIndices',MarkerInd, 'LineWidth', 0.5); 
 
 xlabel('Time, s', 'FontSize', 12, 'Color','k'); 
 ylabel('Error, mm', 'FontSize', 12, 'Color','k');
-legend('F_L_o_a_d = 0 N', 'F_L_o_a_d = 4909 N', 'F_L_o_a_d = 7854 N', 'F_L_o_a_d = 9817 N', 'FontSize', 12);
-
+lgd = legend('F_L_o_a_d = 0 N', 'F_L_o_a_d = 4000 N', 'F_L_o_a_d = 6000 N', 'F_L_o_a_d = 8000 N', 'FontSize', 10);
+lgd.BoxFace.ColorType = 'truecoloralpha';
+lgd.BoxFace.ColorData = uint8([255; 255; 255; 100]); 
 title('b');
-ylim([-2 10]) 
+ylim([-2 3]) 
 ax = gca;
 ax.YAxis(1).Color = 'k';
 xlim([0 25])
@@ -359,31 +311,19 @@ hold off
 
 nexttile
 hold on 
-A_PosErr1_3_NEW= interp1(A_Time1_3, A_PosErr1_3, C_Time1_3);
-A_PosErr1_3_between = A_PosErr1_3_NEW - C_PosErr1_3;
-plot(C_Time1_3, A_PosErr1_3_between, '-k', 'LineWidth', 0.5);
-
-A_PosErr2_3_NEW= interp1(A_Time2_3, A_PosErr2_3, C_Time2_3);
-A_PosErr2_3_between = A_PosErr2_3_NEW - C_PosErr2_3;
-plot(C_Time2_3, A_PosErr2_3_between, '--k', 'LineWidth', 0.5);
-
-A_PosErr3_3_NEW= interp1(A_Time3_3, A_PosErr3_3, C_Time3_3);
-A_PosErr3_3_between = A_PosErr3_3_NEW - C_PosErr3_3;
-plot(C_Time3_3, A_PosErr3_3_between, ':k', 'LineWidth', 0.5);
-
-A_PosErr4_3_NEW= interp1(A_Time4_3, A_PosErr4_3, C_Time4_3);
-A_PosErr4_3_between = A_PosErr4_3_NEW - C_PosErr4_3;
-MarkerInd = [1596, 1627, 1647, 1667, 2964, 3406, 3477, 3521, 3556, 4985, 5053, 5124, 5171, 5206, 5626, 5962, 6006, 7344, 7409, 7439, 7459, 7479, 7499, 7519, 7539, 7559, 7579, 7599, 7619, 7639]
-plot(C_Time4_3, A_PosErr4_3_between, '--ok', 'MarkerSize', 3, 'MarkerIndices',MarkerInd, 'LineWidth', 0.5); 
-
+plot(SIM_3_1_Time, EXP_3_1_PosFb_between,"-r", 'LineWidth', 0.5);
+plot(SIM_3_2_Time, EXP_3_2_PosFb_between,"-g", 'LineWidth', 0.5);
+plot(SIM_3_3_Time, EXP_3_3_PosFb_between,"-b", 'LineWidth', 0.5);
+plot(SIM_3_4_Time, EXP_3_4_PosFb_between,"-m", 'LineWidth', 0.5);
 
 xlabel('Time, s', 'FontSize', 12, 'Color','k'); 
 ylabel('Error, mm', 'FontSize', 12, 'Color','k');
 xlabel('Time, s', 'FontSize', 12, 'Color','k'); 
-legend('F_L_o_a_d = 0 N', 'F_L_o_a_d = 4909 N', 'F_L_o_a_d = 7854 N', 'F_L_o_a_d = 9817 N', 'FontSize', 12);
-
+lgd = legend('F_L_o_a_d = 0 N', 'F_L_o_a_d = 4000 N', 'F_L_o_a_d = 6000 N', 'F_L_o_a_d = 8000 N', 'FontSize', 10);
+lgd.BoxFace.ColorType = 'truecoloralpha';
+lgd.BoxFace.ColorData = uint8([255; 255; 255; 100]); 
 title('c');
-ylim([-2 10]) 
+ylim([-2 3]) 
 ax = gca;
 ax.YAxis(1).Color = 'k';
 xlim([0 25])
@@ -394,33 +334,21 @@ hold off
 
 nexttile
 hold on 
-A_PosErr1_4_NEW= interp1(A_Time1_4, A_PosErr1_4, C_Time1_4);
-A_PosErr1_4_between = A_PosErr1_4_NEW - C_PosErr1_4;
-plot(C_Time1_4, A_PosErr1_4_between, '-k', 'LineWidth', 0.5);
-
-A_PosErr2_4_NEW= interp1(A_Time2_4, A_PosErr2_4, C_Time2_4);
-A_PosErr2_4_between = A_PosErr2_4_NEW - C_PosErr2_4;
-plot(C_Time2_4, A_PosErr2_4_between, '--k', 'LineWidth', 0.5);
-
-A_PosErr3_4_NEW= interp1(A_Time3_4, A_PosErr3_4, C_Time3_4);
-A_PosErr3_4_between = A_PosErr3_4_NEW - C_PosErr3_4;
-plot(C_Time3_4, A_PosErr3_4_between, ':k', 'LineWidth', 0.5);
-
-A_PosErr4_4_NEW= interp1(A_Time4_4, A_PosErr4_4, C_Time4_4);
-A_PosErr4_4_between = A_PosErr4_4_NEW - C_PosErr4_4;
-MarkerInd = [1596, 1627, 1647, 1667, 2961, 3403, 3431, 3490, 3539, 3579, 5118, 5161, 5236, 5291, 5331, 5746, 6050, 6109, 7564, 7640, 7676, 7696, 7716, 7736, 7756, 7776, 7796, 7816, 7836, 7856]
-plot(C_Time4_4, A_PosErr4_4_between, '--ok', 'MarkerSize', 3, 'MarkerIndices',MarkerInd, 'LineWidth', 0.5); 
-
+plot(SIM_4_1_Time, EXP_4_1_PosFb_between,"-r", 'LineWidth', 0.5);
+plot(SIM_4_2_Time, EXP_4_2_PosFb_between,"-g", 'LineWidth', 0.5);
+plot(SIM_4_3_Time, EXP_4_3_PosFb_between,"-b", 'LineWidth', 0.5);
+plot(SIM_4_4_Time, EXP_4_4_PosFb_between,"-m", 'LineWidth', 0.5);
 
 xlabel('Time, s', 'FontSize', 12, 'Color','k'); 
 ylabel('Error, mm', 'FontSize', 12, 'Color','k');
 xlabel('Time, s', 'FontSize', 12, 'Color','k'); 
 
-legend('F_L_o_a_d = 0 N', 'F_L_o_a_d = 4909 N', 'F_L_o_a_d = 7854 N', 'F_L_o_a_d = 9817 N', 'FontSize', 12);
-
+lgd = legend('F_L_o_a_d = 0 N', 'F_L_o_a_d = 4000 N', 'F_L_o_a_d = 6000 N', 'F_L_o_a_d = 8000 N', 'FontSize', 10);
+lgd.BoxFace.ColorType = 'truecoloralpha';
+lgd.BoxFace.ColorData = uint8([255; 255; 255; 100]); 
 
 title('d');
-ylim([-2 10]) 
+ylim([-2 3]) 
 ax = gca;
 ax.YAxis(1).Color = 'k';
 xlim([0 25])
@@ -448,7 +376,5 @@ hold off
 % ylabel('Displacement error, [%]');
 
 
-%exportgraphics(t,'BW_ENG_NEW/analiz_pos_error_between.jpg','Resolution',300)
 set(gcf, 'Color', 'w')
-export_fig BW_ENG_NEW/analiz_pos_error_between.png -painters -m3
-
+export_fig ../FIGURE/analiz_pos_error_between.png -painters -m3
