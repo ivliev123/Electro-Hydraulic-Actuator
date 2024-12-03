@@ -31,7 +31,7 @@ class REG_MAP_():
         self.REG_ADC_buffer_size = self.REG_ADC_block_size * self.REG_ADC_block_len
 
 
-        self.count_Cannels = 16
+        self.count_Cannels = 4
         self.REG_ADC1_Channel_reg = []
         self.REG_ADC1_start_reg = 1000
         self.REG_ADC1_Channel_reg.append(self.REG_ADC1_start_reg)
